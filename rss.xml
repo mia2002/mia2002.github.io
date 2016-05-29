@@ -1,22 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/"
-  xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
-  <channel>
-    <title>Welcome to Yan's Blog</title>
-    <link>http://mia2002.cn</link>
-    <description>What wakes you up every morning is not the bell,but your dream!!</description>
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog]]></title>
+        <link>http://mia2002.cn</link>
+        <description><![CDATA[What wakes you up every morning is not the bell,but your dream!!]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[Weblogic ClassCastException]]></title>
+    <link>http://mia2002.cn/blog/weblogic-ClassCastException</link>
+    <author><![CDATA[Yan]]></author>
     <pubDate>Mon, 23 May 2016 00:00:00 +0000</pubDate>
-    <item>
-      <title>Weblogic ClassCastException</title>
-      <link>http://mia2002.cn/blog/weblogic-ClassCastException</link>
-      <description>&lt;p&gt;今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：&lt;/p&gt;
-</description>
-      <pubDate>Mon, 23 May 2016 00:00:00 +0000</pubDate>
-      <dc:date>2016-05-23T00:00:00+00:00</dc:date>
-    </item>
     <dc:date>2016-05-23T00:00:00+00:00</dc:date>
-  </channel>
+    <guid><![CDATA[/blog/weblogic-ClassCastException]]></guid>
+    <description><![CDATA[今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
+java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B...]]></description>
+</item>
+
+
+    </channel>
 </rss>

@@ -1,83 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-   
-      <title></title>
-   
-   <link>https://github.com/mia2002</link>
-   <description>What wakes you up every morning is not the bell,but your dream!!</description>
-   <language>en-uk</language>
-   <managingEditor> Yan</managingEditor>
-   <atom:link href="rss" rel="self" type="application/rss+xml" />
-   
-	<item>
-	  <title>Weblogic ClassCastException</title>
-	  <link>//blog/weblogic-ClassCastException</link>
-	  <author>Yan</author>
-	  <pubDate>2016-05-23T00:00:00+00:00</pubDate>
-	  <guid>//blog/weblogic-ClassCastException</guid>
-	  <description><![CDATA[
-	     <p>今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">ClassCastException</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">octetstring</span><span class="o">.</span><span class="na">vde</span><span class="o">.</span><span class="na">backend</span><span class="o">.</span><span class="na">BackendRoot</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">cast</span> <span class="n">to</span> <span class="n">com</span><span class="o">.</span><span class="na">octetstring</span><span class="o">.</span><span class="na">vde</span><span class="o">.</span><span class="na">backend</span><span class="o">.</span><span class="na">standard</span><span class="o">.</span><span class="na">BackendStandard</span>
-    <span class="n">at</span> <span class="n">weblogic</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">EmbeddedLDAP</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">EmbeddedLDAP</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">323</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">weblogic</span><span class="o">.</span><span class="na">server</span><span class="o">.</span><span class="na">AbstractServerService</span><span class="o">.</span><span class="na">postConstruct</span><span class="o">(</span><span class="n">AbstractServerService</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">76</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">reflect</span><span class="o">.</span><span class="na">GeneratedMethodAccessor2</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Unknown</span> <span class="n">Source</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">reflect</span><span class="o">.</span><span class="na">DelegatingMethodAccessorImpl</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">DelegatingMethodAccessorImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">43</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">reflect</span><span class="o">.</span><span class="na">Method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Method</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">497</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">glassfish</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">utilities</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">ReflectionHelper</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">ReflectionHelper</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1262</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ClazzCreator</span><span class="o">.</span><span class="na">postConstructMe</span><span class="o">(</span><span class="n">ClazzCreator</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">332</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ClazzCreator</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">ClazzCreator</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">374</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">SystemDescriptor</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">SystemDescriptor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">471</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">glassfish</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">runlevel</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">AsyncRunLevelContext</span><span class="o">.</span><span class="na">findOrCreate</span><span class="o">(</span><span class="n">AsyncRunLevelContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">228</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">glassfish</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">runlevel</span><span class="o">.</span><span class="na">RunLevelContext</span><span class="o">.</span><span class="na">findOrCreate</span><span class="o">(</span><span class="n">RunLevelContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">85</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">Utilities</span><span class="o">.</span><span class="na">createService</span><span class="o">(</span><span class="n">Utilities</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2072</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ServiceHandleImpl</span><span class="o">.</span><span class="na">getService</span><span class="o">(</span><span class="n">ServiceHandleImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">114</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ServiceLocatorImpl</span><span class="o">.</span><span class="na">getService</span><span class="o">(</span><span class="n">ServiceLocatorImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">698</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ThreeThirtyResolver</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="n">ThreeThirtyResolver</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">78</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ClazzCreator</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="n">ClazzCreator</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">211</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">jvnet</span><span class="o">.</span><span class="na">hk2</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ClazzCreator</span><span class="o">.</span><span class="na">resolveAllDependencies</span><span class="o">(</span><span class="n">ClazzCreator</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">234</span><span class="o">)</span>
-    <span class="o">...</span> <span class="o">...</span> 
-</code></pre></div>
-<p>一开始出现这错误时都不知道是啥回事，百度了一下，网友们说是因为有人用sudo去启动过weblogic，导致weblogic的LDAP文件的权限属性为root:root，所以使用普通用户在启动过程中会报LDAP异常，百度的结果大多数都是说使用chown命令来更改文件所有者，解决这个问题的方法有两种，一种是别人博客上的解决方案，另外一种是oracle官网上看到的解决方案，第二种会简单点。先说第一种解决方案吧，用命令行，看起来高大上一丁点。</p>
-
-<h2>解决方案一</h2>
-
-<p>命令：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#chown -R weblogic:weblogic &lt;mydomain_dir&gt; 
-</code></pre></div>
-<p>说明：前一个weblogic是指用户，后一个weblogic是指用户所属的组，<mydomain_dir>是weblogic安装所在的目录，必须使用sudo执行命令。</p>
-
-<p>如果你不记得用户和用户组，可以使用如下命令查看用户和用户所属组：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">ls -l &lt;oracle_home_dir&gt;
-</code></pre></div>
-<p>说明：oracle_home_dir是weblogic安装所在的目录，如果你在安装weblogic时使用oracle默认创建的文件名的话，一般都是.../Middleware/Oracle_Home，接下来你就可以看到你的用户名和用户组了。比如：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">drwxrwx---  22 root  root   748 11 14  2015 OPatch
-</code></pre></div>
-<p>第一个root是用户名，第二个root是用户所在的组。</p>
-
-<p>接下来再用sudo来执行chown命令，如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">sudo chown -R root:root /Users/yan/Oracle/Middleware/Oracle_Home
-</code></pre></div>
-<p>执行成功后，此时在IDE启动weblogic即可，我这边用的IDE是IntelliJ，虽然能成功启动weblogic，但是打开不了项目的页面，重启IntelliJ，就正常了。</p>
-
-<p>好了，接下来说说第二种解决方案。</p>
-
-<h2>解决方案二</h2>
-
-<p>找到weblogic当前使用的domain，如我这边weblogic当前使用的domain是base<em>domain，进入目录/base</em>domain/servers/AdminServer/data，删除ldap整个文件夹，这里你最好备份一下data这个文件，至少删错了，还可以重来。</p>
-
-<p>删除ldap文件夹后再使用IDE打开weblogic，就这么简单粗暴的解决问题了，那么此时你就可以把刚刚备份的data文件夹彻底扔到垃圾桶里了。</p>
-
-<p>如果在启动过程中有报类似说ldap文件丢失的异常，没关系，他会自动创建这个文件夹，如果你有强迫症（像我一样）不喜欢看到控制台报异常的话，也没关系，你重启一下weblogic就没有了。</p>
-
-<h2>解决方案三</h2>
-
-<p>如果上述两种解决方案未能解决您的问题的话，可以考虑把整个domain都删掉，重建。</p>
-
-	  ]]></description>
-	</item>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog - Oracle]]></title>
+        <link>http://mia2002.cn/tag/Oracle</link>
+<!--        需要修复-->
+        <description><![CDATA[]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[Weblogic ClassCastException]]></title>
+    <link>http://mia2002.cn/blog/weblogic-ClassCastException</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Mon, 23 May 2016 00:00:00 +0000</pubDate>
+    <dc:date>2016-05-23T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/weblogic-ClassCastException]]></guid>
+    <description><![CDATA[今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
+java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B...]]></description>
+</item>
 
 
-</channel>
+    </channel>
 </rss>
