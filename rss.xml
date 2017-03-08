@@ -17,6 +17,24 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[JMeter Auto]]></title>
+    <link>http://mia2002.cn/blog/jmeter-auto</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-02-23T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/jmeter-auto]]></guid>
+    <description><![CDATA[JMeter接口自动化测试
+
+1 引言
+
+1.1 JMeter介绍
+
+Apache JMeter是开源软件，它可以用来做负载测试和性能测试。它最初设计是用来测试Web应用程序，但现已扩展到其他测试功能。
+
+Apache JMeter可以用来测试包括基于静态和动态资源程序的性能，例如静态文件，Java Servlets，Java对象，数据库，FTP服务器等等。Jmeter可以模拟一个在服务器、...]]></description>
+</item>
+
+<item>
     <title><![CDATA[How to install JDK]]></title>
     <link>http://mia2002.cn/blog/how-to-install-jdk</link>
     <author><![CDATA[Yan]]></author>

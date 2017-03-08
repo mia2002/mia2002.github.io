@@ -46,7 +46,7 @@
     
     
 </head>
-<body class="home-template nav-closed">
+<body class="tag-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">Menu</h3>
@@ -69,23 +69,28 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < default -->
+        <!-- < dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
-        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+	    <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+	    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Welcome to Yan's Blog</h1>
-            <h2 class="page-description">What wakes you up every morning is not the bell,but your dream!!</h2>
+            <h1 class="page-title">JMeter</h1>
+            <h2 class="page-description">
+            
+                JMeter
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -137,73 +142,6 @@ Apache JMeter可以用来测试包括基于静态和动态资源程序的性能�
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/blog/how-to-install-jdk">How to install JDK</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Ubuntu
-
-1.官网下载JDK
-
-地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-
-
-
-这里我下载的是jdk8，注意勾选上Accept License Agreement。
-
-2.解压缩
-
-
-
-3.拷贝JDK
-
-把文件拷贝到~/opt文件夹下。
-
-先进去这个路径中... <a class="read-more" href="/blog/how-to-install-jdk">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/about'>Yan</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Java'>Java</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-12-05">05 Dec 2016</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/blog/weblogic-ClassCastException">Weblogic ClassCastException</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
-java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B... <a class="read-more" href="/blog/weblogic-ClassCastException">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/about'>Yan</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Oracle'>Oracle</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-05-23">23 May 2016</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
@@ -216,7 +154,6 @@ java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be 
 
 
 </main>
-
 
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>

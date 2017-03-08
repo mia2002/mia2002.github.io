@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog - JMeter]]></title>
+        <link>http://mia2002.cn/tag/JMeter</link>
+<!--        需要修复-->
+        <description><![CDATA[]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[JMeter Auto]]></title>
+    <link>http://mia2002.cn/blog/jmeter-auto</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-02-23T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/jmeter-auto]]></guid>
+    <description><![CDATA[JMeter接口自动化测试
+
+1 引言
+
+1.1 JMeter介绍
+
+Apache JMeter是开源软件，它可以用来做负载测试和性能测试。它最初设计是用来测试Web应用程序，但现已扩展到其他测试功能。
+
+Apache JMeter可以用来测试包括基于静态和动态资源程序的性能，例如静态文件，Java Servlets，Java对象，数据库，FTP服务器等等。Jmeter可以模拟一个在服务器、...]]></description>
+</item>
+
+
+    </channel>
+</rss>
