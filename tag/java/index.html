@@ -59,7 +59,7 @@
 			
 	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
 			
-	    <li class="nav-Oracle nav-current" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
 		
     </ul>
     <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
@@ -76,17 +76,17 @@
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
 <!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/assets/images/cover4.jpg) ">
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
 	    <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
 	    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Oracle</h1>
+            <h1 class="page-title"></h1>
             <h2 class="page-description">
             
-                Oracle
+			    A 1-post collection
             
             </h2>
         </div>
@@ -112,11 +112,28 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/blog/weblogic-ClassCastException">Weblogic ClassCastException</a></h2>
+            <h2 class="post-title"><a href="/blog/how-to-install-jdk">How to install JDK</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
-java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B... <a class="read-more" href="/blog/weblogic-ClassCastException">&raquo;</a></p>
+            <p>Ubuntu
+
+1.官网下载JDK
+
+地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+
+
+这里我下载的是jdk8，注意勾选上Accept License Agreement。
+
+2.解压缩
+
+
+
+3.拷贝JDK
+
+把文件拷贝到~/opt文件夹下。
+
+先进去这个路径中... <a class="read-more" href="/blog/how-to-install-jdk">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
@@ -127,11 +144,11 @@ java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be 
                 on 
                 
                     
-                       <a href='/tag/Oracle'>Oracle</a>
+                       <a href='/tag/java'>java</a>
                        
                 
             
-            <time class="post-date" datetime="2016-05-23">23 May 2016</time>
+            <time class="post-date" datetime="2016-12-05">05 Dec 2016</time>
         </footer>
     </article>
     
