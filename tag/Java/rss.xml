@@ -8,8 +8,8 @@
     <channel>
         <atom:link href="rss" rel="self" type="application/rss+xml" />
         
-        <title><![CDATA[Welcome to Yan's Blog - java]]></title>
-        <link>http://mia2002.cn/tag/java</link>
+        <title><![CDATA[Welcome to Yan's Blog - Java]]></title>
+        <link>http://mia2002.cn/tag/Java</link>
 <!--        需要修复-->
         <description><![CDATA[]]></description>
         
