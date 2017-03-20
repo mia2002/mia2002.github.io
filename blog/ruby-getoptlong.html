@@ -144,16 +144,15 @@
     <span class="nb">p</span> <span class="s2">&quot;ruby getoptlong.rb -d tmp -n 3 -f &#39;test.txt&#39;&quot;</span>
 <span class="k">end</span>
 
-<span class="k">def</span> <span class="nf">parse_arguments</span>
-    <span class="n">opts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">opt</span><span class="p">,</span><span class="n">arg</span><span class="o">|</span>
-        <span class="k">case</span> <span class="n">opt</span>
-        <span class="k">when</span> <span class="s1">&#39;--dir&#39;</span>
-            <span class="n">dir</span><span class="o">=</span><span class="n">arg</span>
-        <span class="k">when</span> <span class="s1">&#39;--num&#39;</span>
-            <span class="n">num</span><span class="o">=</span><span class="n">arg</span><span class="o">.</span><span class="n">to_i</span>
-        <span class="k">when</span> <span class="s1">&#39;--file&#39;</span>
-            <span class="n">test_file</span><span class="o">=</span><span class="n">arg</span>
-        <span class="k">end</span>
+<span class="c1">#parse arguments</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">opt</span><span class="p">,</span><span class="n">arg</span><span class="o">|</span>
+    <span class="k">case</span> <span class="n">opt</span>
+    <span class="k">when</span> <span class="s1">&#39;--dir&#39;</span>
+        <span class="n">dir</span><span class="o">=</span><span class="n">arg</span>
+    <span class="k">when</span> <span class="s1">&#39;--num&#39;</span>
+        <span class="n">num</span><span class="o">=</span><span class="n">arg</span><span class="o">.</span><span class="n">to_i</span>
+    <span class="k">when</span> <span class="s1">&#39;--file&#39;</span>
+        <span class="n">test_file</span><span class="o">=</span><span class="n">arg</span>
     <span class="k">end</span>
 <span class="k">end</span>
 
