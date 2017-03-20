@@ -17,6 +17,25 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[GetoptLong简单例子]]></title>
+    <link>http://mia2002.cn/blog/ruby-getoptlong</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-03-20T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/ruby-getoptlong]]></guid>
+    <description><![CDATA[1 GetoptLong
+
+GetoptLong主要是用来处理命令行参数。
+
+示例代码：
+require &#39;getoptlong&#39;
+
+opts=GetoptLong.new(
+    [&#39;--dir&#39;,&#39;-d&#39;,GetoptLong::REQUIRED_ARGUMENT],
+    [&#39;--num&#39;,&#39;-n&#39;,G...]]></description>
+</item>
+
+<item>
     <title><![CDATA[JMeter接口自动化测试]]></title>
     <link>http://mia2002.cn/blog/jmeter-auto</link>
     <author><![CDATA[Yan]]></author>

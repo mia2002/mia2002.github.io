@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>GetoptLong简单例子</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+	
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">GetoptLong简单例子</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-03-20">20 Mar 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Ruby'>Ruby</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h3>1 GetoptLong</h3>
+
+<p>GetoptLong主要是用来处理命令行参数。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;getoptlong&#39;</span>
+
+<span class="n">opts</span><span class="o">=</span><span class="no">GetoptLong</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+    <span class="o">[</span><span class="s1">&#39;--dir&#39;</span><span class="p">,</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span><span class="no">GetoptLong</span><span class="o">::</span><span class="no">REQUIRED_ARGUMENT</span><span class="o">]</span><span class="p">,</span>
+    <span class="o">[</span><span class="s1">&#39;--num&#39;</span><span class="p">,</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span><span class="no">GetoptLong</span><span class="o">::</span><span class="no">OPTIONAL_ARGUMENT</span><span class="o">]</span><span class="p">,</span>
+    <span class="o">[</span><span class="s1">&#39;--file&#39;</span><span class="p">,</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span><span class="no">GetoptLong</span><span class="o">::</span><span class="no">OPTIONAL_ARGUMENT</span><span class="o">]</span>
+<span class="p">)</span>
+
+<span class="n">dir</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span>
+<span class="n">num</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">test_file</span><span class="o">=</span><span class="s2">&quot;test.txt&quot;</span>
+
+<span class="k">def</span> <span class="nf">display_usage</span>
+    <span class="nb">p</span> <span class="s2">&quot;Sample usage:&quot;</span>
+    <span class="nb">p</span> <span class="s2">&quot;ruby getoptlong.rb -d tmp -n 3 -f &#39;test.txt&#39;&quot;</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">parse_arguments</span>
+    <span class="n">opts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">opt</span><span class="p">,</span><span class="n">arg</span><span class="o">|</span>
+        <span class="k">case</span> <span class="n">opt</span>
+        <span class="k">when</span> <span class="s1">&#39;--dir&#39;</span>
+            <span class="n">dir</span><span class="o">=</span><span class="n">arg</span>
+        <span class="k">when</span> <span class="s1">&#39;--num&#39;</span>
+            <span class="n">num</span><span class="o">=</span><span class="n">arg</span><span class="o">.</span><span class="n">to_i</span>
+        <span class="k">when</span> <span class="s1">&#39;--file&#39;</span>
+            <span class="n">test_file</span><span class="o">=</span><span class="n">arg</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># print all the arguments</span>
+<span class="nb">puts</span> <span class="s2">&quot;dir=</span><span class="si">#{</span><span class="n">dir</span><span class="si">}</span><span class="s2">,num=</span><span class="si">#{</span><span class="n">num</span><span class="si">}</span><span class="s2">,file=</span><span class="si">#{</span><span class="n">test_file</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>命令行调用：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ruby</span> <span class="n">getoptlong</span><span class="o">.</span><span class="n">rb</span> <span class="o">-</span><span class="n">d</span> <span class="nb">test</span> <span class="o">-</span><span class="n">n</span> <span class="mi">333</span> <span class="o">-</span><span class="n">f</span> <span class="n">yanyan</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+<p>执行结果：</p>
+
+<p><img src="../assets/ruby/getoptlong-result.png" alt=""></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/ruby-getoptlong'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/ruby-getoptlong'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/jmeter-auto">
+        <section class="post">
+            <h2>JMeter接口自动化测试</h2>
+            <p>1 引言
+
+1.1 JMeter介绍
+
+Apache JMeter是开源软件，它可以用来做负载测试和性能测试。它最初设计是用来测试Web应用程序，但现已扩展到其他测试功能。
+
+Apache JMeter可以用来测试包括基于静态和动态资源程序的性能，例如静态文件，Java Servlets，Ja...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>

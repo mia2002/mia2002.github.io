@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog - Ruby]]></title>
+        <link>http://mia2002.cn/tag/Ruby</link>
+<!--        需要修复-->
+        <description><![CDATA[]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[GetoptLong简单例子]]></title>
+    <link>http://mia2002.cn/blog/ruby-getoptlong</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-03-20T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/ruby-getoptlong]]></guid>
+    <description><![CDATA[1 GetoptLong
+
+GetoptLong主要是用来处理命令行参数。
+
+示例代码：
+require &#39;getoptlong&#39;
+
+opts=GetoptLong.new(
+    [&#39;--dir&#39;,&#39;-d&#39;,GetoptLong::REQUIRED_ARGUMENT],
+    [&#39;--num&#39;,&#39;-n&#39;,G...]]></description>
+</item>
+
+
+    </channel>
+</rss>
