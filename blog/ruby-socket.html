@@ -145,7 +145,7 @@
 
 <p><img src="../assets/ruby/socket-server.png" alt=""></p>
 
-<p>首先，在接受Http请求和处理Http请求应在不同的线程中进行，线程1（只接收请求）只负责接收Http请求，并把Http请求存放在队列中，线程2（处理Http请求）负责从队列中拿出请求，并对Http协议进行分析，提取路径和参数，分配到各自的task方法。其实这里就是使用到了生产者消费者模式。</p>
+<p>首先，在接收Http请求和处理Http请求应在不同的线程中进行，线程1（接收请求）只负责接收Http请求，并把Http请求存放在队列中，线程2（处理Http请求）负责从队列中拿出请求，并对Http协议进行分析，提取路径和参数，分配到各自的task方法。其实这里就是使用到了生产者消费者模式。</p>
 
 <p>本项目只使用了两条线程，其实更优的处理应该是处理Http请求的线程应根据服务器实际情况分配足够的线程数，并使用线程池管理所有线程，但是本次并没有对此进行优化。</p>
 
@@ -326,7 +326,7 @@ name=yan&amp;password=123
 <p>这个工具类主要是用来配置请求的资源路径对应Task中的方法名，HandlerRequest根据拿到的方法名动态执行Task中的方法。一开始我是考虑使用责任链来实现的，后面发现ruby有send这个方法可以动态执行类定义的方法，果断使用send来实现。</p>
 
 <p>另外，本来原先设计是准备使用properties文件的，但是用gemspec打包后，不知道打包的properties文件到底被存放在什么路径下，试了好几个路径，都是提示file not found，知道怎么回事的大神们可以在评论或者发邮件告诉我，感激不尽！</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># require &#39;yaml&#39;</span>
 
 <span class="k">class</span> <span class="nc">YNRouteUtil</span>
 
@@ -365,7 +365,7 @@ name=yan&amp;password=123
 </code></pre></div>
 <p><strong>5.yn_task.rb</strong></p>
 
-<p>这个类主要作用是用来处理请求的，本示例代码只提供了两个测试方法和一个默认方法，分别是say<em>hello（请求路径：/RubyServer/hello将执行该方法）、test</em>json（请求路径：/RubyServer/json将执行该方法）和default（请求路径找不到时执行该方法）。</p>
+<p>这个类主要作用是用来处理请求的，本示例代码只提供了两个测试方法和一个默认方法，分别是say_hello（请求路径：/RubyServer/hello将执行该方法）、test_json（请求路径：/RubyServer/json将执行该方法）和default（请求路径找不到时执行该方法）。</p>
 
 <p>以下这些方法对应的请求路径均在YNRouteUtil这个类中进行配置请求路径以及对应的YNTask类中的方法名，并在YNTask中添加该方法，实现对请求的处理，通过<code>@request.get(key)</code>可以实现根据接口定义的参数名称来获取参数的值，<code>YNHttp.new.body=&quot;json string&quot;</code>返回处理后的json数据，最后，切记一定要返回最终的请求响应文，如test_json最后的<code>http.response</code></p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
