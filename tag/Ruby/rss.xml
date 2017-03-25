@@ -18,6 +18,20 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[Ruby使用Socket处理Http请求]]></title>
+    <link>http://mia2002.cn/blog/ruby-socket</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Fri, 24 Mar 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-03-24T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/ruby-socket]]></guid>
+    <description><![CDATA[1 引言
+
+经过了一周的ruby学习后，为了让ruby基础得到巩固，我用socket写了一个处理http请求的gem包，我也不知道是否已经有大神完成类似功能的gem包，也不清楚我写的这个服务有什么实际的作用，但这个项目只是作为练手。
+
+首先要吐槽一下的是，这个项目虽然代码量不是很多，但是对一个ruby初学者来说，全程用sublime来写还是蛮累的，本来是想用RubyMine的，但是我之前找到...]]></description>
+</item>
+
+<item>
     <title><![CDATA[GetoptLong简单例子]]></title>
     <link>http://mia2002.cn/blog/ruby-getoptlong</link>
     <author><![CDATA[Yan]]></author>

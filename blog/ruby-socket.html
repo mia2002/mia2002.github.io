@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Ruby使用Socket处理Http请求</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover5.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">Ruby使用Socket处理Http请求</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-03-24">24 Mar 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Ruby'>Ruby</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h3>1 引言</h3>
+
+<p>经过了一周的ruby学习后，为了让ruby基础得到巩固，我用socket写了一个处理http请求的gem包，我也不知道是否已经有大神完成类似功能的gem包，也不清楚我写的这个服务有什么实际的作用，但这个项目只是作为练手。</p>
+
+<p>首先要吐槽一下的是，这个项目虽然代码量不是很多，但是对一个ruby初学者来说，全程用sublime来写还是蛮累的，本来是想用RubyMine的，但是我之前找到的注册码过期了，尽管可以通过调系统时间来解决注册码过期的问题，但是我嫌麻烦，想着就给自己一次锻炼机会吧！结果，说实在的，使用sublime工作效果是比较低的，就说调试程序就是个大问题，不过这也可能是我个人能力问题，不过最终还是学到很多技巧。</p>
+
+<p>用sublime写代码总结的坑如下：</p>
+
+<ul>
+<li>使用sublime编写完代码在irb上执行查看结果，若.rb文件未require使用到的类，不提示错误。只有首个rb文件未require会有对应的报错信息，如果是rb文件再引入第二个rb文件，而第二个rb文件没有require对应的类，没有对应的报错信息，坑啊。</li>
+<li>rb文件（非首个rb文件）中类名写错，rescue后报错信息在irb上输出一堆根本定义不到错误内容的信息，甚至错误发生在第几行也是定位不到。我就试过把YNHttp写成YnHttp，结果我花了很长时间在找bug，各种puts信息，血与泪的痛啊。T_T</li>
+<li>最坑的莫过于sublime不能debug，所以每一次找bug，都要花费我很长时间，不断的做重复工作。</li>
+<li>执行rb文件也麻烦，每一次都要到终端上cd到要执行的rb文件路径，再进入irb，再load要执行的rb文件，已经练成一手好本领（如何机械的进行工作）。</li>
+</ul>
+
+<p><strong><em>本次源代码全部已放在我的Github上，路径：<a href="https://github.com/mia2002/yn_server">https://github.com/mia2002/yn_server</a></em></strong></p>
+
+<h3>2 设计思想</h3>
+
+<p>我用笔粗略的画了整个逻辑执行过程，如下图所示：</p>
+
+<p><img src="../assets/ruby/socket-server.png" alt=""></p>
+
+<p>首先，在接受Http请求和处理Http请求应在不同的线程中进行，线程1（只接收请求）只负责接收Http请求，并把Http请求存放在队列中，线程2（处理Http请求）负责从队列中拿出请求，并对Http协议进行分析，提取路径和参数，分配到各自的task方法。其实这里就是使用到了生产者消费者模式。</p>
+
+<p>本项目只使用了两条线程，其实更优的处理应该是处理Http请求的线程应根据服务器实际情况分配足够的线程数，并使用线程池管理所有线程，但是本次并没有对此进行优化。</p>
+
+<h3>3 HTTP协议</h3>
+
+<p>这里给网络知识忘记了或者压根就不知道的朋友稍微温习一下：</p>
+
+<p>HTTP是Web浏览器和Web服务器之间通信的标准协议。HTTP指定客户端与服务器如何建立连接、客户端如何从服务器请求数据，服务器如何响应请求，以及最后如何关闭连接。</p>
+
+<p><strong>每个请求和响应都有同样的基本形式：一个首行、一个包含元数据的HTTP首部，然后是一个消息体。</strong></p>
+
+<p><strong>GET请求：</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">GET /RubyServer/hello?name=yanyan&amp;pwd=123 HTTP/1.1
+Host: localhost:9000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) 
+Accept-Language: zh-cn
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+</code></pre></div>
+<p>像这样的GET请求不包含消息体，所以请求以一个空行结束。</p>
+
+<p>第一行称为请求行，包括一个方法（GET/POST）、资源路径以及HTTP版本。</p>
+
+<p><strong>POST请求</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">POST /RubyServer/json HTTP/1.1
+Host: localhost:3000
+Content-Type: application/x-www-form-urlencoded
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3)
+Content-Length: 21
+
+name=yan&amp;password=123
+</code></pre></div>
+<p>在POST请求头中空行后接着是请求主体，Content-Length指明消息体有多少个字节。在处理post请求中一般是根据这个参数来提取主体内容。</p>
+
+<p>那么综上，本次代码就是实现去分析Http请求头，通过第一行能判断我们的请求到底是GET还是POST，如果是GET请求的话，参数是放在资源路径?后面；如果是POST请求，则读取Content-Length的值，并通过该值提取主体内容。</p>
+
+<p>当然，HTTP请求并不只有GET和POST请求，这里我们只处理这两种情况，有兴趣的童鞋可以去拓展一下。</p>
+
+<h3>4 代码分析</h3>
+
+<p>经过简单的HTTP知识温习后，相信接下来的代码分析应该很好理解。</p>
+
+<p><strong>1.yn_socket_queue.rb</strong></p>
+
+<p>这个类目前的设计只是简单封装了一下，为以后的功能拓展做准备。</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">YNSocketQueue</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">()</span>
+        <span class="vi">@queue</span><span class="o">=</span><span class="no">Queue</span><span class="o">.</span><span class="n">new</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">socket</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="s2">&quot;Illegal Argument, must be a TCPSocket Object!!&quot;</span> <span class="k">unless</span> <span class="n">socket</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">TCPSocket</span>
+        <span class="k">if</span> <span class="n">socket</span> <span class="o">!=</span> <span class="kp">nil</span>
+            <span class="vi">@queue</span> <span class="o">&lt;&lt;</span> <span class="n">socket</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">take</span>
+        <span class="vi">@queue</span><span class="o">.</span><span class="n">pop</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>2.yn_request.rb</strong></p>
+
+<p>此类实现将获取到的请求参数由&quot;name=yan&amp;password=123&quot;转换为Hash，我也不清楚ruby的API到底有没有这个功能的实现，我是找遍了String类、Array类和Hash类，都没发现有类似的功能，于是就自己实现。</p>
+
+<p>通过<code>Request.new.get(key)</code>可以实现根据参数名称获取参数的值</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">YNRequest</span>
+
+    <span class="kp">include</span> <span class="no">Enumerable</span>
+
+    <span class="kp">attr_reader</span> <span class="ss">:hash</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="vi">@hash</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
+        <span class="k">if</span> <span class="n">content</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">_arr</span> <span class="o">=</span> <span class="o">[]</span>
+            <span class="n">_arr</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span> <span class="p">?</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span> <span class="p">:</span> <span class="n">_arr</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">_arr</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+                <span class="n">__arr</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                <span class="vi">@hash</span><span class="o">[</span><span class="n">__arr</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_sym</span><span class="o">]=</span><span class="n">__arr</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+            <span class="k">end</span>
+        <span class="k">end</span>     
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="vi">@hash</span><span class="o">[</span><span class="n">key</span><span class="o">.</span><span class="n">to_sym</span><span class="o">]</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">each</span>
+        <span class="k">raise</span> <span class="s1">&#39;please provide a block!&#39;</span> <span class="k">unless</span> <span class="nb">block_given?</span>
+        <span class="vi">@hash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+            <span class="k">yield</span> <span class="n">e</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>3.yn_http.rb</strong></p>
+
+<p>此类的设计主要是用来返回Http响应文。</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">YNHttp</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">_status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">_server</span><span class="o">=</span><span class="s2">&quot;Apache-Coyote/1.1&quot;</span><span class="p">,</span><span class="n">_pragma</span><span class="o">=</span><span class="s2">&quot;no-cache&quot;</span><span class="p">,</span><span class="n">_control</span><span class="o">=</span><span class="s2">&quot;no-cache&quot;</span><span class="p">,</span><span class="n">_content_type</span><span class="o">=</span><span class="s2">&quot;text/json&quot;</span><span class="p">,</span><span class="n">_charset</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span><span class="n">_body</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="vi">@status</span> <span class="o">=</span> <span class="n">_status</span>
+        <span class="vi">@server</span> <span class="o">=</span> <span class="n">_server</span>
+        <span class="vi">@pragma</span> <span class="o">=</span> <span class="n">_pragma</span>
+        <span class="vi">@cache_control</span> <span class="o">=</span> <span class="n">_control</span>
+        <span class="vi">@content_type</span> <span class="o">=</span> <span class="n">_content_type</span>
+        <span class="vi">@charset</span> <span class="o">=</span> <span class="n">_charset</span>
+        <span class="vi">@body</span> <span class="o">=</span> <span class="n">_body</span>
+        <span class="vi">@content_length</span> <span class="o">=</span> <span class="n">_body</span><span class="o">.</span><span class="n">length</span>
+    <span class="k">end</span>
+
+    <span class="vc">@@status_hash</span><span class="o">=</span><span class="p">{</span>
+        <span class="mi">100</span> <span class="o">=&gt;</span> <span class="s2">&quot;CONTINUE&quot;</span><span class="p">,</span>
+        <span class="mi">200</span> <span class="o">=&gt;</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+        <span class="mi">201</span> <span class="o">=&gt;</span> <span class="s2">&quot;CREATED&quot;</span><span class="p">,</span>
+        <span class="mi">202</span> <span class="o">=&gt;</span> <span class="s2">&quot;ACCEPTED&quot;</span><span class="p">,</span>
+        <span class="mi">204</span> <span class="o">=&gt;</span> <span class="s2">&quot;NO CONTENT&quot;</span><span class="p">,</span>
+        <span class="mi">302</span> <span class="o">=&gt;</span> <span class="s2">&quot;MOVED TEMPORARILY&quot;</span><span class="p">,</span>
+        <span class="mi">400</span> <span class="o">=&gt;</span> <span class="s2">&quot;BAD REQUEST&quot;</span><span class="p">,</span>
+        <span class="mi">401</span> <span class="o">=&gt;</span> <span class="s2">&quot;UNAUTHORIZED&quot;</span><span class="p">,</span>
+        <span class="mi">402</span> <span class="o">=&gt;</span> <span class="s2">&quot;PAYMENT REQUIRED&quot;</span><span class="p">,</span>
+        <span class="mi">403</span> <span class="o">=&gt;</span> <span class="s2">&quot;FORBIDDEN&quot;</span><span class="p">,</span>
+        <span class="mi">404</span> <span class="o">=&gt;</span> <span class="s2">&quot;NOT FOUND&quot;</span><span class="p">,</span>
+        <span class="mi">408</span> <span class="o">=&gt;</span> <span class="s2">&quot;REQUEST TIMEOUT&quot;</span><span class="p">,</span>
+        <span class="mi">409</span> <span class="o">=&gt;</span> <span class="s2">&quot;CONFLICT&quot;</span><span class="p">,</span>
+        <span class="mi">410</span> <span class="o">=&gt;</span> <span class="s2">&quot;GONE&quot;</span><span class="p">,</span>
+        <span class="mi">500</span> <span class="o">=&gt;</span> <span class="s2">&quot;INTERNAL SERVER ERROR&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">status</span><span class="o">=</span><span class="p">(</span><span class="n">_status</span><span class="p">)</span>
+        <span class="vi">@status</span><span class="o">=</span><span class="n">_status</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">server</span><span class="o">=</span><span class="p">(</span><span class="n">_server</span><span class="p">)</span>
+        <span class="vi">@server</span><span class="o">=</span><span class="n">_server</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">pragma</span><span class="o">=</span><span class="p">(</span><span class="n">_pragma</span><span class="p">)</span>
+        <span class="vi">@pragma</span><span class="o">=</span><span class="n">_pragma</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">cache_control</span><span class="o">=</span><span class="p">(</span><span class="n">_control</span><span class="p">)</span>
+        <span class="vi">@cache_control</span><span class="o">=</span><span class="n">_control</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">content_type</span><span class="o">=</span><span class="p">(</span><span class="n">_content_type</span><span class="p">)</span>
+        <span class="vi">@content_type</span><span class="o">=</span><span class="n">_content_type</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">charset</span><span class="o">=</span><span class="p">(</span><span class="n">_charset</span><span class="p">)</span>
+        <span class="vi">@charset</span><span class="o">=</span><span class="n">_charset</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">body</span><span class="o">=</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="vi">@content_length</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">size</span>
+        <span class="vi">@body</span><span class="o">=</span><span class="n">result</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">response</span>
+        <span class="s2">&quot;HTTP/1.1 </span><span class="si">#{</span><span class="vi">@status</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vc">@@status_hash</span><span class="o">[</span><span class="vi">@status</span><span class="o">]</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+        <span class="s2">&quot;Server:</span><span class="si">#{</span><span class="vi">@server</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;Pragma:</span><span class="si">#{</span><span class="vi">@pragma</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;Cache-Control:</span><span class="si">#{</span><span class="vi">@cache_control</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;Content-Type:</span><span class="si">#{</span><span class="vi">@content_type</span><span class="si">}</span><span class="s2">;charset=</span><span class="si">#{</span><span class="vi">@charset</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;Content-Length:</span><span class="si">#{</span><span class="vi">@content_length</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">+</span> 
+        <span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@body</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>4.yn_route_util.rb</strong></p>
+
+<p>这个工具类主要是用来配置请求的资源路径对应Task中的方法名，HandlerRequest根据拿到的方法名动态执行Task中的方法。一开始我是考虑使用责任链来实现的，后面发现ruby有send这个方法可以动态执行类定义的方法，果断使用send来实现。</p>
+
+<p>另外，本来原先设计是准备使用properties文件的，但是用gemspec打包后，不知道打包的properties文件到底被存放在什么路径下，试了好几个路径，都是提示file not found，知道怎么回事的大神们可以在评论或者发邮件告诉我，感激不尽！</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
+
+<span class="k">class</span> <span class="nc">YNRouteUtil</span>
+
+    <span class="kp">include</span> <span class="no">Enumerable</span>
+
+    <span class="vc">@@route_hash</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;/RubyServer/hello&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;say_hello&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/RubyServer/json&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;test_json&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
+    <span class="c1"># def initialize</span>
+    <span class="c1">#   @route_hash = Hash.new</span>
+    <span class="c1">#   puts &quot;route util initialize&quot;</span>
+    <span class="c1">#   _arr = YAML.load_file(&#39;route.properties&#39;).split(&quot; &quot;)</span>
+    <span class="c1">#   puts &quot;route_file: #{_arr}&quot;</span>
+    <span class="c1">#   _arr.each do |e|</span>
+    <span class="c1">#       __arr = e.split(&quot;=&quot;)</span>
+    <span class="c1">#       @route_hash[__arr[0]] = __arr[1]</span>
+    <span class="c1">#   end</span>
+
+    <span class="c1"># end</span>
+
+    <span class="k">def</span> <span class="nf">get_method</span><span class="p">(</span><span class="n">route</span><span class="p">)</span>
+        <span class="vc">@@route_hash</span><span class="o">[</span><span class="n">route</span><span class="o">]</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">each</span>
+        <span class="k">raise</span> <span class="s1">&#39;please provide a block!&#39;</span> <span class="k">unless</span> <span class="nb">block_given?</span>
+        <span class="vc">@@route_hash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+            <span class="k">yield</span> <span class="n">e</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>5.yn_task.rb</strong></p>
+
+<p>这个类主要作用是用来处理请求的，本示例代码只提供了两个测试方法和一个默认方法，分别是say<em>hello（请求路径：/RubyServer/hello将执行该方法）、test</em>json（请求路径：/RubyServer/json将执行该方法）和default（请求路径找不到时执行该方法）。</p>
+
+<p>以下这些方法对应的请求路径均在YNRouteUtil这个类中进行配置请求路径以及对应的YNTask类中的方法名，并在YNTask中添加该方法，实现对请求的处理，通过<code>@request.get(key)</code>可以实现根据接口定义的参数名称来获取参数的值，<code>YNHttp.new.body=&quot;json string&quot;</code>返回处理后的json数据，最后，切记一定要返回最终的请求响应文，如test_json最后的<code>http.response</code></p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_http&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_request&#39;</span>
+
+<span class="k">class</span> <span class="nc">YNTask</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="vi">@request</span> <span class="o">=</span> <span class="n">request</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> not found in YNTask,please check yn_route_uril.rb&quot;</span>
+        <span class="n">default</span>
+    <span class="k">end</span>
+
+    <span class="c1"># route: /RubyServer/hello</span>
+    <span class="k">def</span> <span class="nf">say_hello</span>
+        <span class="k">begin</span>
+        <span class="n">http</span> <span class="o">=</span> <span class="no">YNHttp</span><span class="o">.</span><span class="n">new</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s2">&quot;text/html&quot;</span>
+        <span class="n">_param</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="vi">@request</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+            <span class="n">_param</span><span class="o">+=</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">e</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="s2">=</span><span class="si">#{</span><span class="n">e</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+        <span class="k">end</span>
+
+        <span class="n">http</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello to Ruby Server&lt;/title&gt;&lt;/html&gt;&lt;body&gt;&lt;h1&gt;Hi,welcome to Yan&#39;s ruby server!&lt;/h1&gt;&lt;p&gt;the request param:&lt;br&gt;</span><span class="si">#{</span><span class="n">_param</span><span class="si">}</span><span class="s2">&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+        <span class="c1"># return the response result</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">response</span>
+        <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+            <span class="nb">puts</span> <span class="n">e</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:caller</span><span class="p">)</span>
+        <span class="k">end</span>
+
+    <span class="k">end</span>
+
+    <span class="c1"># route: /RubyServer/json</span>
+    <span class="k">def</span> <span class="nf">test_json</span>
+        <span class="n">http</span> <span class="o">=</span> <span class="no">YNHttp</span><span class="o">.</span><span class="n">new</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s2">&quot;text/json&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="vi">@request</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">result</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">response</span> <span class="c1"># 最后必须返回影响文</span>
+    <span class="k">end</span>
+
+    <span class="c1"># url not found</span>
+    <span class="k">def</span> <span class="nf">default</span>
+        <span class="n">http</span> <span class="o">=</span> <span class="no">YNHttp</span><span class="o">.</span><span class="n">new</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s2">&quot;text/html&quot;</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">404</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome&lt;/title&gt;&lt;/html&gt;&lt;body&gt;&lt;h1&gt;Welcome to Yan&#39;s ruby server!&lt;/h1&gt;&lt;p&gt;&lt;h3&gt;404 Not Found&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">response</span> <span class="c1"># 最后必须返回影响文</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>6.yn_socket_server.rb</strong></p>
+
+<p>该类主要实现开启一个TCPServer服务，接收http请求，并将接收到的请求push到队列中。</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_socket_queue&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_handle_request&#39;</span>
+
+<span class="k">class</span> <span class="nc">YNSocketServer</span>
+
+    <span class="c1"># 初始化</span>
+    <span class="c1"># port 端口号</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="n">queue</span><span class="p">)</span>
+        <span class="vi">@port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="vi">@queue</span> <span class="o">=</span> <span class="n">queue</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">start_server</span>
+        <span class="k">begin</span>
+            <span class="vi">@server</span><span class="o">=</span><span class="no">TCPServer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@port</span><span class="p">)</span>
+            <span class="nb">puts</span> <span class="s2">&quot;start successfully!!&quot;</span>
+            <span class="kp">loop</span><span class="p">{</span>
+                <span class="vi">@client</span><span class="o">=</span><span class="vi">@server</span><span class="o">.</span><span class="n">accept</span>
+                <span class="vi">@queue</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="vi">@client</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+            <span class="nb">puts</span> <span class="n">e</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:caller</span><span class="p">)</span>
+        <span class="k">end</span>
+
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p><strong>7.yn_handle_request.rb</strong></p>
+
+<p>该类是做处理Http请求，是最最核心的类，也是业务逻辑最复杂的类。</p>
+
+<p>它主要做的处理有如下：</p>
+
+<ul>
+<li>分析HTTP请求头</li>
+<li>根据资源路径查找YNTask中的方法名</li>
+<li>动态执行YNTask类中的方法，获取最终的响应文</li>
+<li>返回响应文给请求客户端</li>
+</ul>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;yn_socket_queue&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_request&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_task&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_route_util&#39;</span>
+
+<span class="c1"># 处理http请求</span>
+<span class="c1"># create by yan</span>
+<span class="k">class</span> <span class="nc">YNHandleRequest</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">socket_queue</span><span class="p">)</span>
+        <span class="vi">@socket_queue</span><span class="o">=</span><span class="n">socket_queue</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">handle</span>
+        <span class="kp">loop</span> <span class="k">do</span>
+            <span class="k">begin</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="vi">@socket_queue</span><span class="o">.</span><span class="n">take</span>
+                <span class="n">_method</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">split</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">path</span><span class="o">=~</span><span class="sr">/.+\.(png|ico|gif)/</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+                    <span class="n">client</span><span class="o">.</span><span class="n">close</span>
+                    <span class="k">next</span>
+                <span class="k">end</span>
+                <span class="n">headers</span><span class="o">=</span><span class="p">{}</span>
+                <span class="k">while</span> <span class="n">line</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="k">break</span> <span class="k">if</span> <span class="n">line</span><span class="o">[</span><span class="mi">0</span><span class="o">]==</span><span class="s2">&quot;&quot;</span>
+                    <span class="n">headers</span><span class="o">[</span><span class="n">line</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">chop</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">strip</span>
+                <span class="k">end</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">servlet_url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">_method</span><span class="o">.</span><span class="n">upcase</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">headers</span><span class="o">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+                    <span class="n">servlet_url</span> <span class="o">=</span> <span class="n">path</span>
+                <span class="k">elsif</span> <span class="n">_method</span><span class="o">.</span><span class="n">upcase</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span>
+                    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">include?</span> <span class="s1">&#39;?&#39;</span>
+                        <span class="c1"># 带参数</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">path</span><span class="o">[</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">.path</span><span class="o">.</span><span class="n">length</span><span class="o">]</span>
+                        <span class="n">servlet_url</span> <span class="o">=</span> <span class="n">path</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span><span class="o">]</span>
+                    <span class="k">else</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                        <span class="n">servlet_url</span> <span class="o">=</span> <span class="n">path</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+
+                <span class="n">request</span> <span class="o">=</span> <span class="no">YNRequest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">util</span> <span class="o">=</span> <span class="no">YNRouteUtil</span><span class="o">.</span><span class="n">new</span>
+                <span class="n">route</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_method</span><span class="p">(</span><span class="n">servlet_url</span><span class="p">)</span>
+                <span class="n">task</span> <span class="o">=</span> <span class="no">YNTask</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="n">route</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="n">route</span> <span class="o">==</span> <span class="kp">nil</span> <span class="o">||</span> <span class="n">route</span><span class="o">.</span><span class="n">empty?</span>
+                <span class="n">route</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">empty?</span> <span class="p">?</span> <span class="s2">&quot;default&quot;</span> <span class="p">:</span> <span class="n">route</span>
+                <span class="n">_result</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">route</span><span class="p">)</span> <span class="c1">#动态执行方法</span>
+                <span class="n">client</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_result</span><span class="p">)</span>
+
+            <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+                <span class="nb">puts</span> <span class="n">e</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:caller</span><span class="p">)</span>
+            <span class="k">ensure</span>
+                <span class="n">client</span><span class="o">.</span><span class="n">close</span>
+            <span class="k">end</span>
+
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>最后，我们可以分别开启两条线程来执行代码，一条线程主要用来负责接收Http请求，另外一条线程用来处理Http请求。</p>
+
+<h3>5 GEM打包</h3>
+
+<p>1.创建与项目同名的.gemspec文件，本例为：yn_server.gemspec，其实不同名也可以，但是为了便于管理，推荐还是建同名文件会比较好。</p>
+
+<p>在.gemspec文件中写入如下内容：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Gem</span><span class="o">::</span><span class="no">Specification</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">name</span>        <span class="o">=</span> <span class="s1">&#39;yn_server&#39;</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">version</span>     <span class="o">=</span> <span class="s1">&#39;0.1&#39;</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">date</span>        <span class="o">=</span> <span class="s1">&#39;2017-03-23&#39;</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">summary</span>     <span class="o">=</span> <span class="s1">&#39;Ruby Server!&#39;</span>
+  <span class="n">s</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;A simple socket server gem&#39;</span>
+  <span class="n">s</span><span class="o">.</span><span class="n">authors</span>     <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;Yan Ng&#39;</span><span class="o">]</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">email</span>       <span class="o">=</span> <span class="s1">&#39;yan@yerl.cn&#39;</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">files</span>       <span class="o">=</span> <span class="sx">%w(</span>
+<span class="sx">                        lib/yn_handle_request.rb</span>
+<span class="sx">                        lib/yn_http.rb</span>
+<span class="sx">                        lib/yn_server.rb</span>
+<span class="sx">                        lib/yn_request.rb</span>
+<span class="sx">                        lib/yn_route_util.rb</span>
+<span class="sx">                        lib/yn_socket_queue.rb</span>
+<span class="sx">                        lib/yn_socket_server.rb</span>
+<span class="sx">                        lib/yn_task.rb</span>
+<span class="sx">                    )</span>
+  <span class="n">s</span><span class="o">.</span><span class="n">homepage</span>    <span class="o">=</span>  
+    <span class="s1">&#39;http://rubygems.org/gems/yn_server&#39;</span>  
+  <span class="n">s</span><span class="o">.</span><span class="n">license</span>     <span class="o">=</span> <span class="s1">&#39;MIT&#39;</span>
+<span class="k">end</span>  
+</code></pre></div>
+<p>注意，s.name一定要是执行的第一个rb文件名称，在打包的rb文件一定要有和该名字一样的ruby文件，否则，最终安装后，require我们这个name，系统会报找不到文件。我就被坑过，最后还是谷歌出来的。</p>
+
+<p>2.生成gem包</p>
+
+<p>在终端执行gem build后会在当前路径生成gem包。</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="n">build</span> <span class="n">yn_server</span><span class="o">.</span><span class="n">gemspec</span>
+</code></pre></div>
+<p>3.install gem</p>
+
+<p>生成的gem包可以实现在本地安装，使用gem install命令</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">yn_manage</span><span class="o">-</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="n">gem</span> 
+</code></pre></div>
+<p>通过gem list命令可以查看是否已经安装成功。</p>
+
+<p>4.irb导入自己的gem包</p>
+
+<p>通过gem install后我们就不需要再向从前那样使用load .rb文件，可以直接使用require引入要使用的类。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># &#39;yn_server&#39;为gemspec中的s.name所配置的名称</span>
+<span class="nb">require</span> <span class="s1">&#39;yn_server&#39;</span> 
+</code></pre></div>
+<p>5.发布gem包</p>
+
+<h3>6 心得体会</h3>
+
+<p>虽说我对Ruby还有很多不懂的地方，但是作为一个新手来说，我坚持完成了一个简单的ruby项目编写，这当中我也学习到很多东西，也发现自己越来越习惯看英文文档，喜欢用Google而不用百度，百度已经越来越不能满足我的需求了。当然这可能也是因为国内的Ruby并没有像国外那么流行，不仅Ruby如此，连自动化测试也是，都是要通过查阅国外文档才能找到答案。</p>
+
+<p>学习完Ruby后，我感觉在移动自动化测试上可以用上，以后在学习移动自动化测试可以开发自己的gem包，还是很不错的想法。</p>
+
+<p>Ruby on Rails，我想在未来有时间再继续深入学习ruby。</p>
+
+<blockquote>
+<p>e-mail：yan@yerl.cn</p>
+
+<p>blog：mia2002.cn</p>
+</blockquote>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/ruby-socket'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/ruby-socket'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover5.jpg)" href="/blog/ruby-getoptlong">
+        <section class="post">
+            <h2>GetoptLong简单例子</h2>
+            <p>1 GetoptLong
+
+GetoptLong主要是用来处理命令行参数。
+
+示例代码：
+require &#39;getoptlong&#39;
+
+opts=GetoptLong.new(
+    [&#39;--dir&#39;,&#39;-d&#39;,GetoptLong::REQUI...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>
