@@ -578,6 +578,44 @@ name=yan&amp;password=123
 </code></pre></div>
 <p>5.发布gem包</p>
 
+<p>我们可以把包发布到rubygems.org，这样其他人在引用我们的gem包时就可以直接使用<code>gem install</code>来安装。</p>
+
+<p>1）首先得先到<a href="https://rubygems.org">https://rubygems.org</a>注册帐号，并完成邮件激活帐号。</p>
+
+<p>2）命令行push gem</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="n">push</span> <span class="n">yn_server</span><span class="o">-</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="n">gem</span>
+</code></pre></div>
+<p><img src="../assets/ruby/socket-server-2.png" alt=""></p>
+
+<p>等几分钟后，可以在rubygems.org上搜索到刚push的gem包信息。</p>
+
+<p><img src="../assets/ruby/socket-server-3.png" alt=""></p>
+
+<p>3）命令行gem install</p>
+
+<p>接下来，其他人要使用这个gem包，就可以直接打开终端输入命令：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">yn_server</span>
+</code></pre></div>
+<p><img src="../assets/ruby/socket-server-4.png" alt=""></p>
+
+<p>4)执行gem包</p>
+
+<p>使用<code>YNServer.start(port)</code>启动服务，参数端口可不传，不带参数时默认端口号为2000。</p>
+
+<p><img src="../assets/ruby/socket-server-5.png" alt=""></p>
+
+<p>打开浏览器输入地址：</p>
+
+<p>http://localhost:2000/RubyServer/hello?name=yan&amp;pwd=123</p>
+
+<p>执行结果：</p>
+
+<p><img src="../assets/ruby/socket-server-6.png" alt=""></p>
+
+<p>终端结果：</p>
+
+<p><img src="../assets/ruby/socket-server-7.png" alt=""></p>
+
 <h3>6 心得体会</h3>
 
 <p>虽说我对Ruby还有很多不懂的地方，但是作为一个新手来说，我坚持完成了一个简单的ruby项目编写，这当中我也学习到很多东西，也发现自己越来越习惯看英文文档，喜欢用Google而不用百度，百度已经越来越不能满足我的需求了。当然这可能也是因为国内的Ruby并没有像国外那么流行，不仅Ruby如此，连自动化测试也是，都是要通过查阅国外文档才能找到答案。</p>
