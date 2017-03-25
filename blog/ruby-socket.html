@@ -511,7 +511,6 @@ name=yan&amp;password=123
                 <span class="n">route</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_method</span><span class="p">(</span><span class="n">servlet_url</span><span class="p">)</span>
                 <span class="n">task</span> <span class="o">=</span> <span class="no">YNTask</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
                 <span class="n">route</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="n">route</span> <span class="o">==</span> <span class="kp">nil</span> <span class="o">||</span> <span class="n">route</span><span class="o">.</span><span class="n">empty?</span>
-                <span class="n">route</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">empty?</span> <span class="p">?</span> <span class="s2">&quot;default&quot;</span> <span class="p">:</span> <span class="n">route</span>
                 <span class="n">_result</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">route</span><span class="p">)</span> <span class="c1">#动态执行方法</span>
                 <span class="n">client</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_result</span><span class="p">)</span>
 
