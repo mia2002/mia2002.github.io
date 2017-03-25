@@ -480,11 +480,10 @@ name=yan&amp;password=123
         <span class="kp">loop</span> <span class="k">do</span>
             <span class="k">begin</span>
                 <span class="n">client</span> <span class="o">=</span> <span class="vi">@socket_queue</span><span class="o">.</span><span class="n">take</span>
+                <span class="nb">puts</span> <span class="s2">&quot;-----------------------------------&quot;</span>
                 <span class="n">_method</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">split</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">path</span><span class="o">=~</span><span class="sr">/.+\.(png|ico|gif)/</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">close</span>
-                    <span class="k">next</span>
-                <span class="k">end</span>
+                <span class="nb">puts</span> <span class="s2">&quot;url: </span><span class="si">#{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="nb">puts</span> <span class="s2">&quot;method: </span><span class="si">#{</span><span class="n">_method</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="n">headers</span><span class="o">=</span><span class="p">{}</span>
                 <span class="k">while</span> <span class="n">line</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
                     <span class="k">break</span> <span class="k">if</span> <span class="n">line</span><span class="o">[</span><span class="mi">0</span><span class="o">]==</span><span class="s2">&quot;&quot;</span>
@@ -505,12 +504,13 @@ name=yan&amp;password=123
                         <span class="n">servlet_url</span> <span class="o">=</span> <span class="n">path</span>
                     <span class="k">end</span>
                 <span class="k">end</span>
-
                 <span class="n">request</span> <span class="o">=</span> <span class="no">YNRequest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="nb">puts</span> <span class="s2">&quot;parameter: </span><span class="si">#{</span><span class="n">request</span><span class="o">.</span><span class="n">hash</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="n">util</span> <span class="o">=</span> <span class="no">YNRouteUtil</span><span class="o">.</span><span class="n">new</span>
                 <span class="n">route</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_method</span><span class="p">(</span><span class="n">servlet_url</span><span class="p">)</span>
                 <span class="n">task</span> <span class="o">=</span> <span class="no">YNTask</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
                 <span class="n">route</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> <span class="k">if</span> <span class="n">route</span> <span class="o">==</span> <span class="kp">nil</span> <span class="o">||</span> <span class="n">route</span><span class="o">.</span><span class="n">empty?</span>
+                <span class="nb">puts</span> <span class="s2">&quot;route: </span><span class="si">#{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="n">_result</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">route</span><span class="p">)</span> <span class="c1">#动态执行方法</span>
                 <span class="n">client</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_result</span><span class="p">)</span>
 
