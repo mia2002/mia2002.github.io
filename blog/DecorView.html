@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>DecorView</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">DecorView</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-06-15">15 Jun 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <ol>
+<li>DecorView为整个Window界面的最顶层View</li>
+<li>DecorView只有一个子元素为LinearLayout，代表整个Window界面，包含通知栏，标题栏，内容显示栏三块区域。</li>
+<li>LinearLayout里有两个FrameLayout子元素。</li>
+</ol>
+
+<p>第3点提到的两个FrameLayout分别为标题栏显示界面和内容栏显示界面。</p>
+
+<ul>
+<li><p>标题栏显示界面：只有一个TextView显示应用的名称。也可以自定义标题栏，载入后的自定义标题栏View将加入FrameLayout中。</p></li>
+<li><p>内容栏显示界面：就是setContentView方法载入的布局界面，加入其中。</p></li>
+</ul>
+
+<p><img src="../assets/blog/2017061502.jpg" alt=""></p>
+
+<p><strong>接下来通过代码详细了解一下DecorView</strong></p>
+
+<p>我们在Activity中，会在onCreate()方法中写下这样一句代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//指定Activity的布局</span>
+<span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">main</span><span class="o">)</span>
+</code></pre></div>
+<p>通过跟踪代码可得知Activity#setContentView最终调用的是Window#setContentView。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setContentView</span><span class="o">(</span><span class="nd">@LayoutRes</span> <span class="kt">int</span> <span class="n">layoutResId</span><span class="o">){</span>
+    <span class="n">getWindow</span><span class="o">().</span><span class="na">setContentView</span><span class="o">(</span><span class="n">layoutResID</span><span class="o">);</span>  <span class="c1">//调用getWindow方法，返回mWindow</span>
+     <span class="n">initWindowDecorActionBar</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">Window</span> <span class="nf">getWindow</span><span class="o">()</span> <span class="o">{</span>   
+     <span class="k">return</span> <span class="n">mWindow</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>mWindow是在Activity#attach方法中被赋值：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kt">void</span> <span class="nf">attach</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">ActivityThread</span> <span class="n">aThread</span><span class="o">,</span>
+            <span class="n">Instrumentation</span> <span class="n">instr</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="kt">int</span> <span class="n">ident</span><span class="o">,</span>
+            <span class="n">Application</span> <span class="n">application</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">,</span> <span class="n">ActivityInfo</span> <span class="n">info</span><span class="o">,</span>
+            <span class="n">CharSequence</span> <span class="n">title</span><span class="o">,</span> <span class="n">Activity</span> <span class="n">parent</span><span class="o">,</span> <span class="n">String</span> <span class="n">id</span><span class="o">,</span>
+            <span class="n">NonConfigurationInstances</span> <span class="n">lastNonConfigurationInstances</span><span class="o">,</span>
+            <span class="n">Configuration</span> <span class="n">config</span><span class="o">,</span> <span class="n">String</span> <span class="n">referrer</span><span class="o">,</span> <span class="n">IVoiceInteractor</span> <span class="n">voiceInteractor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="c1">//mWindow被赋值</span>
+        <span class="n">mWindow</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">PhoneWindow</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+</code></pre></div>
+<p>从上面的代码可以看出PhoneWindow是Window的实现类，接下来看一下PhoneWindow的setContentView方法：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setContentView</span><span class="o">(</span><span class="kt">int</span> <span class="n">layoutResID</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Note: FEATURE_CONTENT_TRANSITIONS may be set in the process of installing the window</span>
+    <span class="c1">// decor, when theme attributes and the like are crystalized. Do not check the feature</span>
+    <span class="c1">// before this happens.</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mContentParent</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 1</span>
+        <span class="n">installDecor</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(!</span><span class="n">hasFeature</span><span class="o">(</span><span class="n">FEATURE_CONTENT_TRANSITIONS</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">mContentParent</span><span class="o">.</span><span class="na">removeAllViews</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">hasFeature</span><span class="o">(</span><span class="n">FEATURE_CONTENT_TRANSITIONS</span><span class="o">))</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Scene</span> <span class="n">newScene</span> <span class="o">=</span> <span class="n">Scene</span><span class="o">.</span><span class="na">getSceneForLayout</span><span class="o">(</span><span class="n">mContentParent</span><span class="o">,</span> <span class="n">layoutResID</span><span class="o">,</span>
+                <span class="n">getContext</span><span class="o">());</span>
+        <span class="n">transitionTo</span><span class="o">(</span><span class="n">newScene</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">mLayoutInflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">layoutResID</span><span class="o">,</span> <span class="n">mContentParent</span><span class="o">);</span> <span class="c1">// 2</span>
+    <span class="o">}</span>
+    <span class="kd">final</span> <span class="n">Callback</span> <span class="n">cb</span> <span class="o">=</span> <span class="n">getCallback</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">cb</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isDestroyed</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">cb</span><span class="o">.</span><span class="na">onContentChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>其中，mContentParent是一个ViewGroup类型，这个mContentParent是布局（main.xm）的父布局。他是mDecor本身或者它的子元素。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// This is the view in which the window contents are placed. It is either</span>
+<span class="c1">// mDecor itself, or a child of mDecor where the contents go.</span>
+<span class="kd">private</span> <span class="n">ViewGroup</span> <span class="n">mContentParent</span><span class="o">;</span>
+</code></pre></div>
+<p><strong>创建DecorView</strong></p>
+
+<p>接下来看一下PhoneWindow#installDecor方法的源码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">installDecor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mDecor</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mDecor</span> <span class="o">=</span> <span class="n">generateDecor</span><span class="o">();</span> <span class="c1">// 1</span>
+        <span class="n">mDecor</span><span class="o">.</span><span class="na">setDescendantFocusability</span><span class="o">(</span><span class="n">ViewGroup</span><span class="o">.</span><span class="na">FOCUS_AFTER_DESCENDANTS</span><span class="o">);</span>
+        <span class="n">mDecor</span><span class="o">.</span><span class="na">setIsRootNamespace</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">mInvalidatePanelMenuPosted</span> <span class="o">&amp;&amp;</span> <span class="n">mInvalidatePanelMenuFeatures</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mDecor</span><span class="o">.</span><span class="na">postOnAnimation</span><span class="o">(</span><span class="n">mInvalidatePanelMenuRunnable</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mContentParent</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mContentParent</span> <span class="o">=</span> <span class="n">generateLayout</span><span class="o">(</span><span class="n">mDecor</span><span class="o">);</span> <span class="c1">// 2</span>
+        <span class="o">...</span>
+        <span class="o">}</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="n">DecorView</span> <span class="nf">generateDecor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">DecorView</span><span class="o">(</span><span class="n">getContext</span><span class="o">(),</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>从上面的方法可以看出这里实现了一个DecorView，DecorView是PhoneWindow类的一个内部类。</p>
+
+<p>总结：DecorView是ViewTree的最顶层View，他含有两个子元素，包含TitleBar的FrameLayout和包含mContentParent的FrameLayout，当设置了Window.windowNoTitle，DecorView只有mContentParent一个子View。而我们的布局文件（main.xml）就是放在mContentParent里。</p>
+
+<p><strong>将DecorView添加至Window</strong></p>
+
+<h1>onAttachedToWindow()</h1>
+
+<p>当view和window绑定时会调用这个方法，在onDraw之前调用。</p>
+
+<p>在Android生命周期的位置：</p>
+
+<p>onCreate--&gt;onStart--&gt;onResume--&gt;onAttachedToWindow</p>
+
+<p><img src="../assets/blog/2017061501.jpg" alt=""></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/DecorView'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/DecorView'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+						
+						
+			
+		
+
+    <!-- [[! next_post ]] -->
+    <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/blog/System-getProperty">
+        <section class="post">
+            <h2>System.getProperty()</h2>
+            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+
+|参数名|描述|
+|---|---|
+|java.version|Java的运行时环境版本|
+|java.vendor|Java 运行时环境供应商|
+|java.vendor.u...</p>
+        </section>
+    </a>
+        
+    <!-- [[! /next_post ]] -->
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover5.jpg)" href="/blog/ruby-socket">
+        <section class="post">
+            <h2>Ruby使用Socket处理Http请求</h2>
+            <p>1 引言
+
+经过了一周的ruby学习后，为了让ruby基础得到巩固，我用socket写了一个处理http请求的gem包，我也不知道是否已经有大神完成类似功能的gem包，也不清楚我写的这个服务有什么实际的作用，但这个项目只是作为练手。
+
+首先要吐槽一下的是，这个项目虽然代码量不是很多，但是对一个...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>

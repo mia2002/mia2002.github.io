@@ -18,6 +18,41 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[System.getProperty()]]></title>
+    <link>http://mia2002.cn/blog/System-getProperty</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-07-20T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/System-getProperty]]></guid>
+    <description><![CDATA[使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+
+
+
+参数名
+描述
+
+
+
+java.version
+Java的运行时环境版本
+
+
+java.vendor
+Java 运行时环境供应商
+
+
+java.vendor.url
+Java 供应商的 URL
+
+
+java.home
+Java 安装目录
+
+
+java.vm.specification.v...]]></description>
+</item>
+
+<item>
     <title><![CDATA[How to install JDK]]></title>
     <link>http://mia2002.cn/blog/how-to-install-jdk</link>
     <author><![CDATA[Yan]]></author>

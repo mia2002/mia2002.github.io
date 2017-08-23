@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>我的第一个JNI应用</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">我的第一个JNI应用</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-08-22">22 Aug 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h2>环境准备</h2>
+
+<p><strong>Android Studio已安装NDK。</strong></p>
+
+<p><img src="../assets/blog/20170822-1.png" alt=""></p>
+
+<p><strong>配置ndk-build的环境变量</strong></p>
+
+<p><strong>Windows环境变量配置</strong></p>
+
+<ol>
+<li>新建系统变量</li>
+</ol>
+
+<p><img src="../assets/blog/20170822-2.png" alt=""></p>
+
+<ol>
+<li>找到Path系统变量，添加 <code>%NDK_HOME%;</code></li>
+</ol>
+
+<p><img src="../assets/blog/20170822-3.png" alt=""></p>
+
+<ol>
+<li>保存，打开cmd终端，输入ndk-build测试</li>
+</ol>
+
+<p><img src="../assets/blog/20170822-4.png" alt=""></p>
+
+<p>看到如图所示提示，即表示环境变量配置成功。</p>
+
+<p><strong>Mac环境变量配置</strong></p>
+
+<ol>
+<li>使用vim或者nano修改~/.bash_profile文件，添加ndk-build路径。</li>
+</ol>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">nano</span> <span class="o">~</span><span class="sr">/.bash_profile</span>
+</code></pre></div>
+<p><img src="../assets/blog/20170822-10.png" alt=""></p>
+
+<p>添加完点击control+x保存文件。</p>
+
+<ol>
+<li>使用<code>source .bash_profile</code>命令应用刚添加的配置</li>
+<li>使用<code>ndk-build</code>检测是否已配置成功</li>
+</ol>
+
+<p><img src="../assets/blog/20170822-11.png" alt=""></p>
+
+<h2>添加jni目录</h2>
+
+<p>在已创建的Android项目中src/main下面创建jni目录。</p>
+
+<p><img src="../assets/blog/20170822-5.png" alt=""></p>
+
+<h2>声明native方法</h2>
+
+<p>使用C/C++语言编写部分的代码，在java中均使用native修饰符修饰。</p>
+
+<p>本demo中，我在MainActivity声明了两个native方法。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">Activity</span><span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">//从C文件获取值</span>
+    <span class="kd">public</span> <span class="kd">native</span> <span class="n">String</span> <span class="nf">getValueFromC</span><span class="o">();</span>
+
+    <span class="c1">//实现将值传递给C</span>
+    <span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">setValueToC</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div>
+<h2>生成头文件</h2>
+
+<p>jni本地函数命名规则是 <code>Java_包名_native方法所在的类名_native方法名</code>，为了因命名错误而导致一些不必要的异常，推荐使用javah命令来生成头文件。</p>
+
+<p>进入项目目录app/src/main/java中，使用以下命令：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">javah</span> <span class="n">包名</span><span class="o">.</span><span class="na">MainActivity</span>
+</code></pre></div>
+<h2>编写C代码</h2>
+
+<p>在jni目录下新建.c文件，并将刚刚生成的.h头文件的两个native方法拷贝进来。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">stdio</span><span class="o">.</span><span class="na">h</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">.</span><span class="na">h</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">jni</span><span class="o">.</span><span class="na">h</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">android</span><span class="o">/</span><span class="n">log</span><span class="o">.</span><span class="na">h</span><span class="o">&gt;</span>
+
+<span class="c1">//宏定义，由于C中调用log的函数是__android_log_print()，为了简便，因此使用宏定义</span>
+
+<span class="err">#</span><span class="n">define</span>  <span class="n">LOG_TAG</span>    <span class="s">&quot;C_LOG&quot;</span>
+<span class="err">#</span><span class="n">define</span>  <span class="nf">LOGI</span><span class="o">(...)</span>  <span class="n">__android_log_print</span><span class="o">(</span><span class="n">ANDROID_LOG_INFO</span><span class="o">,</span> <span class="n">LOG_TAG</span><span class="o">,</span> <span class="n">__VA_ARGS__</span><span class="o">)</span>
+
+<span class="c1">//第一个参数JNIEnv* JNIEnv是一个结构体，里面定义了大量的函数指针，供开发使用。</span>
+<span class="c1">//第二个参数是jobject 就是调用当前native方法的Java对象</span>
+
+<span class="n">JNIEXPORT</span> <span class="n">jstring</span> <span class="n">JNICALL</span> <span class="nf">Java_pub_yanng_jnidemo01_MainActivity_getValueFromC</span>
+  <span class="o">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="o">,</span> <span class="n">jobject</span> <span class="n">thiz</span><span class="o">){</span>
+    <span class="c1">//在LogCat中输出日志</span>
+   <span class="n">LOGI</span><span class="o">(</span><span class="s">&quot;调用 C getValueFromC() 函数\n&quot;</span><span class="o">);</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Hello JNI，I&#39;m from C&quot;</span><span class="o">;</span>
+   <span class="c1">//通过NewStringUTF函数将C的字符串转换成java的jstring类型。</span>
+   <span class="k">return</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">NewStringUTF</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">str</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">JNIEXPORT</span> <span class="kt">void</span> <span class="n">JNICALL</span> <span class="nf">Java_pub_yanng_jnidemo01_MainActivity_setValueToC</span>
+    <span class="o">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="o">,</span> <span class="n">jobject</span> <span class="n">thiz</span><span class="o">,</span> <span class="n">jstring</span> <span class="n">str</span><span class="o">){</span>
+    <span class="c1">//在LogCat中输出日志</span>
+    <span class="n">LOGI</span><span class="o">(</span><span class="s">&quot;调用 C setValueToC() 函数\n&quot;</span><span class="o">);</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">*)(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetStringUTFChars</span><span class="o">(</span><span class="n">env</span><span class="o">,</span> <span class="n">str</span><span class="o">,</span> <span class="n">NULL</span><span class="o">);</span>
+     <span class="n">LOGI</span><span class="o">(</span><span class="s">&quot;您设置的值为：%s\n&quot;</span><span class="o">,</span> <span class="n">string</span><span class="o">);</span>
+
+      <span class="c1">// 显示释放转换成UTf-8的string空间，如果不显示调用，JVM会一直保存该对象，不回收，容易导致内存溢出</span>
+      <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">ReleaseStringUTFChars</span><span class="o">(</span><span class="n">env</span><span class="o">,</span> <span class="n">str</span><span class="o">,</span> <span class="n">string</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div>
+<h2>新建Android.mk文件</h2>
+
+<p>在jni目录中新建名为Android.mk的文件，并在文件中输入如下内容：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">LOCAL_PATH</span> <span class="p">:</span><span class="o">=</span> <span class="err">$</span><span class="p">(</span><span class="n">call</span> <span class="n">my</span><span class="o">-</span><span class="n">dir</span><span class="p">)</span>
+
+<span class="kp">include</span> <span class="err">$</span><span class="p">(</span><span class="no">CLEAR_VARS</span><span class="p">)</span>
+
+<span class="no">LOCAL_MODULE</span>    <span class="p">:</span><span class="o">=</span> <span class="n">hello</span>
+<span class="no">LOCAL_SRC_FILES</span> <span class="p">:</span><span class="o">=</span> <span class="n">hello</span><span class="o">.</span><span class="n">c</span>
+
+<span class="c1"># 这句主要是因为使用了Android/log.h，因此需要加上这句</span>
+<span class="no">LOCAL_LDLIBS</span> <span class="p">:</span><span class="o">=</span> <span class="o">-</span><span class="n">llog</span> 
+
+<span class="kp">include</span> <span class="err">$</span><span class="p">(</span><span class="no">BUILD_SHARED_LIBRARY</span><span class="p">)</span>
+</code></pre></div>
+<h2>build.gradle</h2>
+
+<p>在app的build.gradle添加如图所示圈出来部分内容。</p>
+
+<p><img src="../assets/blog/20170822-6.png" alt=""></p>
+
+<h2>gradle.properties</h2>
+
+<p>为解决ndk提示版本低不能自动编译，可在gradle.properties文件中添加如下语句：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">android</span><span class="o">.</span><span class="n">useDeprecatedNdk</span><span class="o">=</span><span class="kp">true</span>
+</code></pre></div>
+<h2>执行ndk-build</h2>
+
+<p>打开命令行，cd到jni当前目录所在路径，命令行输入<code>ndk-build</code></p>
+
+<p><img src="../assets/blog/20170822-7.png" alt=""></p>
+
+<p>看到没有报错信息，并且提示生成.so文件，并且在项目的libs文件夹中会有生成的so文件，即表示生成.so文件成功。</p>
+
+<p><img src="../assets/blog/20170822-8.png" alt=""></p>
+
+<h2>System.loadLibrary</h2>
+
+<p>在java代码中还需要使用<code>System.loadLibrary</code>加载so文件，如下代码所示：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="s">&quot;hello&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>其中hello就是Android.mk中定义的名字。</p>
+
+<h2>执行结果</h2>
+
+<p><img src="../assets/blog/20170822-9.png" alt=""></p>
+
+<p>源代码：</p>
+
+<p><a href="https://github.com/mia2002/JNIDemo01">https://github.com/mia2002/JNIDemo01</a></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/first-jni-demo'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/first-jni-demo'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/if-else">
+        <section class="post">
+            <h2>如何解决if else多层嵌套</h2>
+            <p>前言
+
+在进入正题前请允许我啰嗦几句，其实这篇文章我在上一年就想写了，但是拖延症发作，一直拖到今天。
+
+if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的，我的大学java老师在讲if else语句的时候和我们说过if else嵌套应尽量保持不超过3层，这句话，我一直记住了，但是...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>

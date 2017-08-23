@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog - Android]]></title>
+        <link>http://mia2002.cn/tag/Android</link>
+<!--        需要修复-->
+        <description><![CDATA[]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[我的第一个JNI应用]]></title>
+    <link>http://mia2002.cn/blog/first-jni-demo</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-08-22T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/first-jni-demo]]></guid>
+    <description><![CDATA[环境准备
+
+Android Studio已安装NDK。
+
+
+
+配置ndk-build的环境变量
+
+Windows环境变量配置
+
+
+新建系统变量
+
+
+
+
+
+找到Path系统变量，添加 %NDK_HOME%;
+
+
+
+
+
+保存，打开cmd终端，输入ndk-build测试
+
+
+
+
+看到如图所示提示，即表示环境变量配置成功。
+
+Mac环境变量配置
+
+
+使用vim或者nano修改~/.bash_prof...]]></description>
+</item>
+
+<item>
+    <title><![CDATA[如何解决if else多层嵌套]]></title>
+    <link>http://mia2002.cn/blog/if-else</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Fri, 04 Aug 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-08-04T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/if-else]]></guid>
+    <description><![CDATA[前言
+
+在进入正题前请允许我啰嗦几句，其实这篇文章我在上一年就想写了，但是拖延症发作，一直拖到今天。
+
+if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的，我的大学java老师在讲if else语句的时候和我们说过if else嵌套应尽量保持不超过3层，这句话，我一直记住了，但是在实际写代码中，我是尽量保持在最多两层嵌套，大多数情况下，我是保持在一层判断。
+
+有人也许会觉得多层...]]></description>
+</item>
+
+<item>
+    <title><![CDATA[DecorView]]></title>
+    <link>http://mia2002.cn/blog/DecorView</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 15 Jun 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-06-15T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/DecorView]]></guid>
+    <description><![CDATA[
+DecorView为整个Window界面的最顶层View
+DecorView只有一个子元素为LinearLayout，代表整个Window界面，包含通知栏，标题栏，内容显示栏三块区域。
+LinearLayout里有两个FrameLayout子元素。
+
+
+第3点提到的两个FrameLayout分别为标题栏显示界面和内容栏显示界面。
+
+
+标题栏显示界面：只有一个TextView显示应用的名称。...]]></description>
+</item>
+
+
+    </channel>
+</rss>

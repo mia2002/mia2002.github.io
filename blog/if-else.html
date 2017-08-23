@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>如何解决if else多层嵌套</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">如何解决if else多层嵌套</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-08-04">04 Aug 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h2>前言</h2>
+
+<p>在进入正题前请允许我啰嗦几句，其实这篇文章我在上一年就想写了，但是拖延症发作，一直拖到今天。</p>
+
+<p>if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的，我的大学java老师在讲if else语句的时候和我们说过if else嵌套应尽量保持不超过3层，这句话，我一直记住了，但是在实际写代码中，我是尽量保持在最多两层嵌套，大多数情况下，我是保持在一层判断。</p>
+
+<p>有人也许会觉得多层嵌套也对代码没多大的影响，但其实开发更多是一个团队的工作，如果你只是一味考虑自己实现的简便性，而忽略程序的结构清晰、可读性、可拓展性和可维护性，那将会降低代码的可阅读性。</p>
+
+<h2>为什么要避免if else多层嵌套</h2>
+
+<p>想想当你看到如下代码时，你有怎么样的感觉。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_01</span><span class="o">){</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">isShow</span><span class="o">){</span>
+
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="o">...</span>
+
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_02</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="o">...</span>
+
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_03</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_04</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_05</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_06</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_07</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_08</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_09</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_10</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>这样的代码在实际开发中应该都不陌生，实际加上逻辑代码，可能这样的代码就占据了几十甚至到上百行，今后需求发生变动，比方说修改其中一个条件的逻辑代码，代码量少的情况下你可能就直接找到那个满足条件的if语句块，然后在里面改逻辑代码，代码量多的情况下，为避免改错，你可能要去对一下花括号，但是万一代码没有格式化呢，那就真的是oh shit了，我们都知道在多人开发模式中，贸然格式化代码是件很awful的事情，这意味着你的同事可能在代码合并解决冲突的时候要点到手指很累。</p>
+
+<p>为了我们代码的可阅读性，当遇上多层if else嵌套时，思考一下怎么能简化他，让代码不再是大片大片的if else。</p>
+
+<p>接下来我将说说实际开发中，我个人是怎么去简化的。</p>
+
+<h2>1 逆向思维</h2>
+
+<p>很多时候当程序员拿到需求时，多数情况下他会优先考虑满足条件的情况，如下：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">condition</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span><span class="c1">//满足条件1</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">condition</span><span class="o">-</span><span class="mi">2</span><span class="o">){</span><span class="c1">//满足条件2</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">condition</span><span class="o">-</span><span class="mi">3</span><span class="o">){</span><span class="c1">//满足条件3</span>
+            <span class="o">....</span>
+            <span class="c1">//业务逻辑</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>这种思维模式，我暂时把它叫做顺向思维，很多时候程序员更偏向于这种开发思维。但是这样的思维很多时候往往是导致if else多层嵌套的元首。</p>
+
+<p>当遇到这种情况下，我就会开始逆向思考，条件不满足的情况会怎么样，其实我感觉这样的思维有时更好的把控全局展示。举个栗子，在做网络数据加载展示的时候，程序员集成接口把数据展示出来了，但最终测试过来反馈当没网络的时候页面展示是空白的，希望加载不了的时候给用户点提示。</p>
+
+<p>类似这样的例子还有很多，因为大多数程序员比较关注的是成功的状态，而忽略了对失败情况的考虑。因此我认为逆向思维很多时候能避免出现考虑欠缺的情况。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//1--顺向思维</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">makeFile</span><span class="o">(){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">path</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">)){</span><span class="c1">//满足条件1</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span><span class="c1">//满足条件2</span>
+            <span class="n">file</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">//2--逆向思维</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">makeFile</span><span class="o">(){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">path</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">)){</span><span class="c1">//变量值为空，不满足条件</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span><span class="c1">//文件夹已存在，不满足创建条件</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">file</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>上述就是很典型的逆向思维解决if else多层嵌套问题。</p>
+
+<h2>2 运用switch case语句</h2>
+
+<p>switch case这个相信不用我怎么多说大家都会知道怎么让if else转变成switch case语句，我个人并不会觉得switch case语句就比if else可阅读性高多少，只是觉得看break关键字比去对if else的花括号要简便得多，当然如果要嵌套switch case的话，那你还是使用if else好了。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//1--if else</span>
+<span class="k">if</span><span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+    <span class="c1">//do something...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+    <span class="c1">//do something...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+    <span class="c1">//do something...</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+    <span class="c1">//do something...</span>
+<span class="o">}</span>
+
+<span class="c1">//2--switch case</span>
+<span class="k">switch</span><span class="o">(</span><span class="n">num</span><span class="o">){</span>
+<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+    <span class="c1">//do something...</span>
+    <span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+    <span class="c1">//do something...</span>
+    <span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="c1">//do something...</span>
+    <span class="k">break</span><span class="o">;</span>
+<span class="k">default</span><span class="o">:</span>
+    <span class="c1">//do something...</span>
+    <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2>3 使用三目运算</h2>
+
+<p>首先个人是不推荐在核心、复杂的业务代码里面大量使用三目运算的，因为当业务逻辑复杂度够高时，大量的三目运算其实不便于维护人员阅读代码的，正如你们所知道的，三目运算通常是一行代码就可以搞定，所以使用三目运算的前提条件应该是业务逻辑比较单一，能让人一眼就知道这句代码的主要用来做什么。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//1--if else</span>
+<span class="k">if</span><span class="o">(</span><span class="n">isShow</span><span class="o">){</span>
+    <span class="n">button</span><span class="o">.</span><span class="na">setVisibility</span><span class="o">(</span><span class="n">View</span><span class="o">.</span><span class="na">VISIBLE</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+    <span class="n">button</span><span class="o">.</span><span class="na">setVisibility</span><span class="o">(</span><span class="n">View</span><span class="o">.</span><span class="na">GONE</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//2--三目运算</span>
+<span class="n">button</span><span class="o">.</span><span class="na">setVisibility</span><span class="o">(</span><span class="n">isShow</span> <span class="o">?</span> <span class="n">View</span><span class="o">.</span><span class="na">VISIBLE</span> <span class="o">:</span> <span class="n">View</span><span class="o">.</span><span class="na">GONE</span><span class="o">);</span>
+</code></pre></div>
+<h2>4 do...while</h2>
+
+<p>终于讲到最核心的解决方案了，就是这个<code>do{...}while(false)</code>，正如大家知道的do while语句是一个循环体，跟while、for一样的作用，只不过do while至少会执行一次，而while、for当条件不满足时就不会执行，这几个循环体他们都是使用break关键字跳出循环，而这个break关键字就是我们最终用来解决if else多层嵌套的关键。<code>while(false)</code>表示循环体只执行一次。</p>
+
+<p>使用do while(false)时要抽出共同代码块，与上面提到的逆向思维一致，在do语句块里面当不满足条件break，以此类推，满足往下执行，执行完do{...}while(false)后执行共同代码部分。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//1--if else</span>
+<span class="k">if</span><span class="o">(</span><span class="n">path</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">)){</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
+        <span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">isSuccess</span><span class="o">){</span>
+            <span class="c1">//do something...</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="c1">//do another thing...</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//do the next thing...</span>
+
+<span class="c1">//2--do while(false)</span>
+<span class="k">do</span> <span class="o">{</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">path</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+    <span class="k">if</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="k">break</span><span class="o">;</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(!</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="k">break</span><span class="o">;</span>
+    <span class="kt">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+    <span class="k">if</span><span class="o">(!</span><span class="n">isSuccess</span><span class="o">){</span>
+        <span class="n">Toast</span><span class="o">(</span><span class="s">&quot;Fail!!!&quot;</span><span class="o">);</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">while</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="c1">//do the same thing when the file is not exists...</span>
+</code></pre></div>
+<p>以上就是简单举的例子。</p>
+
+<h2>5 责任链</h2>
+
+<p>接下来要提到的就是设计模式中的责任链，对于复杂的业务逻辑判断，每一个判断后要处理的内容较多时，其实可以考虑封装成一个类，以后要是条件增加或者单个逻辑处理改变了，我们只需要去增加处理类与修改对应的类，如在前言提到的那段代码。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_01</span><span class="o">){</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">isShow</span><span class="o">){</span>
+
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="o">...</span>
+
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_02</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+
+    <span class="o">}</span><span class="k">else</span> <span class="o">...</span>
+
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_03</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_04</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_05</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_06</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_07</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_08</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_09</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">MetaDataConstant</span><span class="o">.</span><span class="na">TYPE_10</span><span class="o">){</span>
+    <span class="o">...</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>当以上代码业务逻辑复杂度变大，并且需求变化较频繁，后续类型也会不断增加时，不妨考虑使用责任链解决这样的代码。</p>
+
+<h2>6 避免冗余代码</h2>
+
+<p>开发中要避免出现冗余代码。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//冗余代码</span>
+<span class="k">if</span><span class="o">(</span><span class="n">isSuccess</span><span class="o">){</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">//去掉冗余代码后</span>
+<span class="k">return</span> <span class="o">!</span><span class="n">isSuccess</span><span class="o">;</span>
+</code></pre></div>
+<h2>终章</h2>
+
+<p>以上就是我个人的一些小小经验，有说的不对处，欢迎在评论中指出。</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/if-else'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/if-else'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+
+    <!-- [[! next_post ]] -->
+    <a class="read-next-story " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/first-jni-demo">
+        <section class="post">
+            <h2>我的第一个JNI应用</h2>
+            <p>## 环境准备
+
+**Android Studio已安装NDK。**
+
+![](../assets/blog/20170822-1.png)
+
+**配置ndk-build的环境变量**
+
+**Windows环境变量配置**
+
+1. 新建系统变量
+
+![](../assets...</p>
+        </section>
+    </a>
+        
+    <!-- [[! /next_post ]] -->
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/blog/System-getProperty">
+        <section class="post">
+            <h2>System.getProperty()</h2>
+            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+
+
+
+参数名
+描述
+
+
+
+java.version
+Java的运行时环境版本
+
+
+java.vendor
+Java 运行时环境供应商
+
+
+java.vendor.url
+Java 供应商的 U...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>

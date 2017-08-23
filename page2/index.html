@@ -46,7 +46,7 @@
     
     
 </head>
-<body class="tag-template nav-closed">
+<body class="paged archive-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">Menu</h3>
@@ -69,28 +69,23 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < dynamically overriding backgrounds for tags as well as descriptions -->
-
-
-<!-- < default}} -->
+        <!-- < default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- The big featured header  -->
+<header class="main-header "
+        style="background-image: url(/assets/images/cover1.jpg) ">
     <nav class="main-nav overlay clearfix">
-	    <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
-	    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Java</h1>
-            <h2 class="page-description">
-            
-                Java
-            
-            </h2>
+            <h1 class="page-title">Welcome to Yan's Blog</h1>
+            <h2 class="page-description">What wakes you up every morning is not the bell,but your dream!!</h2>
         </div>
     </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -102,7 +97,11 @@
         
             <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 1 </span>
+        
+            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
+        
+    
+    <span class="page-number"> Page 2 of 2 </span>
      
 </nav>
         
@@ -112,35 +111,19 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/blog/System-getProperty">System.getProperty()</a></h2>
+            <h2 class="post-title"><a href="/blog/ruby-getoptlong">GetoptLong简单例子</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+            <p>1 GetoptLong
 
+GetoptLong主要是用来处理命令行参数。
 
+示例代码：
+require &#39;getoptlong&#39;
 
-参数名
-描述
-
-
-
-java.version
-Java的运行时环境版本
-
-
-java.vendor
-Java 运行时环境供应商
-
-
-java.vendor.url
-Java 供应商的 URL
-
-
-java.home
-Java 安装目录
-
-
-java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">&raquo;</a></p>
+opts=GetoptLong.new(
+    [&#39;--dir&#39;,&#39;-d&#39;,GetoptLong::REQUIRED_ARGUMENT],
+    [&#39;--num&#39;,&#39;-n&#39;,G... <a class="read-more" href="/blog/ruby-getoptlong">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
@@ -151,11 +134,41 @@ java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">
                 on 
                 
                     
-                       <a href='/tag/Java'>Java</a>
+                       <a href='/tag/Ruby'>Ruby</a>
                        
                 
             
-            <time class="post-date" datetime="2017-07-20">20 Jul 2017</time>
+            <time class="post-date" datetime="2017-03-20">20 Mar 2017</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/blog/jmeter-auto">JMeter接口自动化测试</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>1 引言
+
+1.1 JMeter介绍
+
+Apache JMeter是开源软件，它可以用来做负载测试和性能测试。它最初设计是用来测试Web应用程序，但现已扩展到其他测试功能。
+
+Apache JMeter可以用来测试包括基于静态和动态资源程序的性能，例如静态文件，Java Servlets，Java对象，数据库，FTP服务器等等。Jmeter可以模拟一个在服务器、网络或者对象上大的负载来测试或... <a class="read-more" href="/blog/jmeter-auto">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
+            <!-- author -->
+            <a href='/about'>Yan</a>
+            <!-- [[tags prefix=" on "]] -->
+             
+                on 
+                
+                    
+                       <a href='/tag/JMeter'>JMeter</a>
+                       
+                
+            
+            <time class="post-date" datetime="2017-02-23">23 Feb 2017</time>
         </footer>
     </article>
     
@@ -201,18 +214,48 @@ java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">
         </footer>
     </article>
     
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/blog/weblogic-ClassCastException">Weblogic ClassCastException</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
+java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B... <a class="read-more" href="/blog/weblogic-ClassCastException">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
+            <!-- author -->
+            <a href='/about'>Yan</a>
+            <!-- [[tags prefix=" on "]] -->
+             
+                on 
+                
+                    
+                       <a href='/tag/Oracle'>Oracle</a>
+                       
+                
+            
+            <time class="post-date" datetime="2016-05-23">23 May 2016</time>
+        </footer>
+    </article>
+    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 1 </span>
+        
+            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
+        
+    
+    <span class="page-number"> Page 2 of 2 </span>
      
 </nav>
     
 
 
 </main>
+
 
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>

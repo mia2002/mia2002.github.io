@@ -76,17 +76,17 @@
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
 <!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/assets/images/cover1.jpg) ">
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
 	    <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
 	    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Java</h1>
+            <h1 class="page-title">Android</h1>
             <h2 class="page-description">
             
-                Java
+                Android
             
             </h2>
         </div>
@@ -112,35 +112,43 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/blog/System-getProperty">System.getProperty()</a></h2>
+            <h2 class="post-title"><a href="/blog/first-jni-demo">我的第一个JNI应用</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+            <p>环境准备
+
+Android Studio已安装NDK。
 
 
 
-参数名
-描述
+配置ndk-build的环境变量
+
+Windows环境变量配置
+
+
+新建系统变量
 
 
 
-java.version
-Java的运行时环境版本
 
 
-java.vendor
-Java 运行时环境供应商
+找到Path系统变量，添加 %NDK_HOME%;
 
 
-java.vendor.url
-Java 供应商的 URL
 
 
-java.home
-Java 安装目录
+
+保存，打开cmd终端，输入ndk-build测试
 
 
-java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">&raquo;</a></p>
+
+
+看到如图所示提示，即表示环境变量配置成功。
+
+Mac环境变量配置
+
+
+使用vim或者nano修改~/.bash_prof... <a class="read-more" href="/blog/first-jni-demo">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
@@ -151,38 +159,26 @@ java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">
                 on 
                 
                     
-                       <a href='/tag/Java'>Java</a>
+                       <a href='/tag/Android'>Android</a>
                        
                 
             
-            <time class="post-date" datetime="2017-07-20">20 Jul 2017</time>
+            <time class="post-date" datetime="2017-08-22">22 Aug 2017</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/blog/how-to-install-jdk">How to install JDK</a></h2>
+            <h2 class="post-title"><a href="/blog/if-else">如何解决if else多层嵌套</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>Ubuntu
+            <p>前言
 
-1.官网下载JDK
+在进入正题前请允许我啰嗦几句，其实这篇文章我在上一年就想写了，但是拖延症发作，一直拖到今天。
 
-地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的，我的大学java老师在讲if else语句的时候和我们说过if else嵌套应尽量保持不超过3层，这句话，我一直记住了，但是在实际写代码中，我是尽量保持在最多两层嵌套，大多数情况下，我是保持在一层判断。
 
-
-
-这里我下载的是jdk8，注意勾选上Accept License Agreement。
-
-2.解压缩
-
-
-
-3.拷贝JDK
-
-把文件拷贝到~/opt文件夹下。
-
-先进去这个路径中... <a class="read-more" href="/blog/how-to-install-jdk">&raquo;</a></p>
+有人也许会觉得多层... <a class="read-more" href="/blog/if-else">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
@@ -193,11 +189,44 @@ java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">
                 on 
                 
                     
-                       <a href='/tag/Java'>Java</a>
+                       <a href='/tag/Android'>Android</a>
                        
                 
             
-            <time class="post-date" datetime="2016-12-05">05 Dec 2016</time>
+            <time class="post-date" datetime="2017-08-04">04 Aug 2017</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/blog/DecorView">DecorView</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>
+DecorView为整个Window界面的最顶层View
+DecorView只有一个子元素为LinearLayout，代表整个Window界面，包含通知栏，标题栏，内容显示栏三块区域。
+LinearLayout里有两个FrameLayout子元素。
+
+
+第3点提到的两个FrameLayout分别为标题栏显示界面和内容栏显示界面。
+
+
+标题栏显示界面：只有一个TextView显示应用的名称。... <a class="read-more" href="/blog/DecorView">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
+            <!-- author -->
+            <a href='/about'>Yan</a>
+            <!-- [[tags prefix=" on "]] -->
+             
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+            
+            <time class="post-date" datetime="2017-06-15">15 Jun 2017</time>
         </footer>
     </article>
     
