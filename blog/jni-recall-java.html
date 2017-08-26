@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>C回调Java方法</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">C回调Java方法</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-08-22">22 Aug 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <p>注意：C回调Java方法是通过反射来实现的。</p>
+
+<p>C反射步骤与java反射基本一致。</p>
+
+<p><strong>Java的反射示例代码：</strong></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//先找到class</span>
+<span class="n">Class</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;package.TestModel&quot;</span><span class="o">);</span>
+<span class="c1">//找到方法</span>
+<span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&quot;methodName&quot;</span><span class="o">,</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="c1">//创建对象</span>
+<span class="c1">//Object obj = clazz.newInstance();//构造方法无参数可使用该方法创建</span>
+<span class="c1">//获取带参的构造方法</span>
+<span class="n">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="c1">//实例化对象</span>
+<span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">);</span>
+<span class="c1">//调用方法</span>
+<span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span><span class="s">&quot;hello,yanyan!&quot;</span><span class="o">);</span>
+</code></pre></div>
+<p><strong>C反射</strong></p>
+
+<ol>
+<li>JNI提供了FindClass()、GetObjectClass()等方法供获取Class。</li>
+<li>通过GetMethodID()获取要调用的方法</li>
+<li>通过AllocObject()创建对象</li>
+<li>调用方法</li>
+</ol>
+
+<p><strong>回调Java无参方法的示例代码:</strong></p>
+
+<p>java代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm">* 回调方法</span>
+<span class="cm">*/</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onRecall</span><span class="o">(){</span>
+    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span><span class="s">&quot;我是回调空方法&quot;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>C代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//找到字节码 findClass第一个参数env 第二个参数 要找的字节码对应类的路径</span>
+<span class="c1">//jclass  （*FindClass)(JNIEnv*,const char*);</span>
+<span class="n">jclass</span> <span class="n">clazz</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">FindClass</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="s">&quot;pub/yanng/reflectionjnidemo/JNI&quot;</span><span class="o">);</span>
+<span class="c1">//找到方法</span>
+<span class="c1">//第二个参数是找到的字节码(class)</span>
+<span class="c1">//第三个参数是要回调的方法名，第四个参数是方法签名，可通过javap获取方法签名（详细操作下面有介绍）</span>
+<span class="n">jmethodID</span> <span class="n">methodID</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetMethodID</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">clazz</span><span class="o">,</span><span class="s">&quot;onRecall&quot;</span><span class="o">,</span><span class="s">&quot;()V&quot;</span><span class="o">);</span>
+<span class="c1">//创建对象（可选）</span>
+<span class="c1">//通过对象调用方法</span>
+<span class="c1">//第一个参数 JNIEvn</span>
+<span class="c1">//第二个参数 要调用的对象</span>
+<span class="c1">//第三个参数 要调用的方法的methodid变量</span>
+<span class="c1">//...可变参数，调用方法如果有参数，就是后面可变参数，要传入的值</span>
+<span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">CallVoidMethod</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">thiz</span><span class="o">,</span><span class="n">methodID</span><span class="o">);</span>
+</code></pre></div>
+<p>其中，</p>
+
+<ul>
+<li>CallVoidMethod ：为调用返回值为void的方法</li>
+<li>CallIntMethod ： 为调用返回值为int类型的方法</li>
+<li>CallStringMethod ：为调用返回值为String类型的方法</li>
+<li>CallObjectMethod ：为调用返回值为Object类型的方法</li>
+</ul>
+
+<p><strong>获取方法签名</strong></p>
+
+<p>获取方法签名可通过以下命令获取到：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># 进入字节码路径</span>
+<span class="n">cd</span> <span class="err">方法所在类的字节码路径</span>
+<span class="c1"># 获取该类下所有方法的签名</span>
+<span class="n">javap</span> <span class="o">-</span><span class="n">s</span> <span class="err">包名</span><span class="o">.</span><span class="err">方法所在类</span> 
+</code></pre></div>
+<p>需要注意的是若是Android Studio项目，则生成的.class(字节码)文件是在项目<code>app/build/intermediates/classes</code>路径中，若是Eclipse，则进入到项目中的bin目录。</p>
+
+<p><img src="../assets/blog/20170825-1.png" alt=""></p>
+
+<p><strong>回调Java带int类型参数方法的示例代码:</strong></p>
+
+<p>java代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm"> * 带参回调方法</span>
+<span class="cm"> * @param x</span>
+<span class="cm"> * @param y</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">;</span>
+    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span><span class="n">result</span><span class="o">+</span><span class="s">&quot;&quot;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>C代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//找到Class，第二个参数为要反射的方法所在的类相对路径</span>
+<span class="n">jclass</span> <span class="n">clazz</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">FindClass</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="s">&quot;pub/yanng/reflectionjnidemo/JNI&quot;</span><span class="o">);</span>
+<span class="c1">//找到add这个方法的methodID，最后一个参数是方法签名</span>
+<span class="n">jmethodID</span> <span class="n">methodID</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetMethodID</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">clazz</span><span class="o">,</span><span class="s">&quot;add&quot;</span><span class="o">,</span><span class="s">&quot;(II)V&quot;</span><span class="o">);</span>
+<span class="c1">//调用方法</span>
+<span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">CallVoidMethod</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">thiz</span><span class="o">,</span><span class="n">methodID</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</code></pre></div>
+<p><strong>回调Java带String类型参数方法的示例代码:</strong></p>
+
+<p>java代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm">* 带String类型参数的回调方法</span>
+<span class="cm">* @param str</span>
+<span class="cm">*/</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onRecall</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">){</span>
+    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">str</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>C代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//找到Class</span>
+<span class="n">jclass</span> <span class="n">clazz</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">FindClass</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="s">&quot;pub/yanng/reflectionjnidemo/JNI&quot;</span><span class="o">);</span>
+<span class="c1">//找到onRecall这个方法的MethodID</span>
+<span class="n">jmethodID</span> <span class="n">methodID</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetMethodID</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">clazz</span><span class="o">,</span><span class="s">&quot;onRecall&quot;</span><span class="o">,</span><span class="s">&quot;(Ljava/lang/String;)V&quot;</span><span class="o">);</span>
+<span class="c1">//创建一个字符串</span>
+<span class="n">jstring</span> <span class="n">jstr</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">NewStringUTF</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="s">&quot;hello,Yan&quot;</span><span class="o">);</span>
+<span class="c1">//回调方法</span>
+<span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">CallVoidMethod</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">thiz</span><span class="o">,</span><span class="n">methodID</span><span class="o">,</span><span class="n">jstr</span><span class="o">);</span>
+</code></pre></div>
+<p><strong>回调Java接口中方法的示例代码:</strong></p>
+
+<p>注意到前面讲的三个例子代码灵活性都很低，Class的路径都写死成<code>pub/yanng/reflectionjnidemo/JNI</code>，即前面举的那三个回调方法其实都是在<code>pub.yanng.reflectionjnidemo.JNI</code>这个类中声明，但是更多的时候我们是希望把回调方法声明成一个接口，这样我们的应用才能更加灵活的调用，就像我们给按钮注册监听器那样。</p>
+
+<p>以下是示例代码：</p>
+
+<p>java代码</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm"> * 接口声明</span>
+<span class="cm"> * Created by Yan on 2017/8/25.</span>
+<span class="cm"> */</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnCallBackListener</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 回调方法</span>
+<span class="cm">     * @param result</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCallBack</span><span class="o">(</span><span class="n">String</span> <span class="n">result</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//native方法声明</span>
+<span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">callbackInterface</span><span class="o">(</span><span class="n">OnCallBackListener</span> <span class="n">listener</span><span class="o">);</span>
+
+<span class="c1">//native方法调用</span>
+<span class="n">callbackInterface</span><span class="o">(</span><span class="k">new</span> <span class="nf">OnCallBackListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCallBack</span><span class="o">(</span><span class="n">String</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//result为C设置的值</span>
+        <span class="c1">//该方法由C来回调</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="n">result</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div>
+<p>C代码：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm">* 回调OnCallBackListener中的方法</span>
+<span class="cm">**/</span>
+<span class="n">JNIEXPORT</span> <span class="kt">void</span> <span class="n">JNICALL</span> <span class="nf">Java_pub_yanng_reflectionjnidemo_JNI_callbackInterface</span>
+  <span class="o">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="o">,</span> <span class="n">jobject</span> <span class="n">thiz</span><span class="o">,</span> <span class="n">jobject</span> <span class="n">obj</span><span class="o">){</span>
+    <span class="c1">//找到Class，由于我们此次是通过传进来的jobject对象找到字节码，因此使用GetObjectClass方法获取</span>
+    <span class="n">jclass</span> <span class="n">clazz</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetObjectClass</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">obj</span><span class="o">);</span>
+    <span class="c1">//找到onCallBack方法的MethodID</span>
+    <span class="n">jmethodID</span> <span class="n">methodID</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">GetMethodID</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">clazz</span><span class="o">,</span><span class="s">&quot;onCallBack&quot;</span><span class="o">,</span><span class="s">&quot;(Ljava/lang/String;)V&quot;</span><span class="o">);</span>
+    <span class="c1">//创建一个字符串</span>
+    <span class="n">jstring</span> <span class="n">jstr</span> <span class="o">=</span> <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">NewStringUTF</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="s">&quot;这是返回的值&quot;</span><span class="o">);</span>
+    <span class="c1">//调用方法</span>
+    <span class="o">(*</span><span class="n">env</span><span class="o">)-&gt;</span><span class="n">CallVoidMethod</span><span class="o">(</span><span class="n">env</span><span class="o">,</span><span class="n">obj</span><span class="o">,</span><span class="n">methodID</span><span class="o">,</span><span class="n">jstr</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>
+<p><strong><em>源代码：</em></strong></p>
+
+<p>https://github.com/mia2002/ReflectionJniDemo</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/jni-recall-java'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/jni-recall-java'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/first-jni-demo">
+        <section class="post">
+            <h2>我的第一个JNI应用</h2>
+            <p>环境准备
+
+Android Studio已安装NDK。
+
+
+
+配置ndk-build的环境变量
+
+Windows环境变量配置
+
+
+新建系统变量
+
+
+
+
+
+找到Path系统变量，添加 %NDK_HOME%;
+
+
+
+
+
+保存，打开cmd终端，输入ndk-build测试
+
+
+
+
+看到如图所示提示，即...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>

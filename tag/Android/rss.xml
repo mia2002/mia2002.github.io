@@ -18,6 +18,24 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[C回调Java方法]]></title>
+    <link>http://mia2002.cn/blog/jni-recall-java</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-08-22T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/jni-recall-java]]></guid>
+    <description><![CDATA[注意：C回调Java方法是通过反射来实现的。
+
+C反射步骤与java反射基本一致。
+
+Java的反射示例代码：
+//先找到class
+Class clazz = Class.forName(&quot;package.TestModel&quot;);
+//找到方法
+Method method = clazz.getMethod(&quot;methodName&quot;,String.c...]]></description>
+</item>
+
+<item>
     <title><![CDATA[我的第一个JNI应用]]></title>
     <link>http://mia2002.cn/blog/first-jni-demo</link>
     <author><![CDATA[Yan]]></author>
