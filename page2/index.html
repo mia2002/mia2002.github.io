@@ -101,13 +101,48 @@
             <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
         
     
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 2 of 3 </span>
+     
+        <a class="older-posts" href="/page3/" title="Next Page">Older Posts &raquo;</a>
      
 </nav>
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/blog/DecorView">DecorView</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>
+DecorView为整个Window界面的最顶层View
+DecorView只有一个子元素为LinearLayout，代表整个Window界面，包含通知栏，标题栏，内容显示栏三块区域。
+LinearLayout里有两个FrameLayout子元素。
+
+
+第3点提到的两个FrameLayout分别为标题栏显示界面和内容栏显示界面。
+
+
+标题栏显示界面：只有一个TextView显示应用的名称。... <a class="read-more" href="/blog/DecorView">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
+            <!-- author -->
+            <a href='/about'>Yan</a>
+            <!-- [[tags prefix=" on "]] -->
+             
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+            
+            <time class="post-date" datetime="2017-06-15">15 Jun 2017</time>
+        </footer>
+    </article>
     
     <article class="post">
         <header class="post-header">
@@ -242,31 +277,6 @@ Apache JMeter可以用来测试包括基于静态和动态资源程序的性能�
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/blog/weblogic-ClassCastException">Weblogic ClassCastException</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>今天手贱不小心用了超级管理员帐号去开启weblogic，导致后面用回IDE上配置的weblogic server启动失败。失败报错信息如下：
-java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be cast to com.octetstring.vde.backend.standard.B... <a class="read-more" href="/blog/weblogic-ClassCastException">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/about'>Yan</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Oracle'>Oracle</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-05-23">23 May 2016</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
@@ -276,7 +286,9 @@ java.lang.ClassCastException: com.octetstring.vde.backend.BackendRoot cannot be 
             <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
         
     
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 2 of 3 </span>
+     
+        <a class="older-posts" href="/page3/" title="Next Page">Older Posts &raquo;</a>
      
 </nav>
     

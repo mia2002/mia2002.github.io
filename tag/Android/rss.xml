@@ -18,6 +18,20 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
+    <title><![CDATA[Mac打开ADT Bundle]]></title>
+    <link>http://mia2002.cn/blog/mac-open-adt</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Fri, 08 Sep 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-09-08T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/mac-open-adt]]></guid>
+    <description><![CDATA[macos下打开ADT Bundle需要本机已安装Java SE 6，如下图所示，本文档只作一个过程记录，方便自己查看。
+
+
+
+这是由于自从mac os升级到10.8之后，就把系统自带的1.6版本的jdk删掉，因此我们想在mac下打开ADT Bundle只能先安装jdk1.6。注意如果系统已经安装更高版本的jdk，此时系统需先卸载高版本的jdk，再安装jdk1.6。注意jdk1.6和高版本的...]]></description>
+</item>
+
+<item>
     <title><![CDATA[C回调Java方法]]></title>
     <link>http://mia2002.cn/blog/jni-recall-java</link>
     <author><![CDATA[Yan]]></author>
