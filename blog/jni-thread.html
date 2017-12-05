@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>原生线程</title>
+    <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+<!--
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+    
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Welcome to Yan's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Welcome to Yan's Blog" />
+    <meta property="og:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Welcome to Yan's Blog" />
+    <meta name="twitter:description" content="What wakes you up every morning is not the bell,but your dream!!" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Welcome to Yan's Blog" href="/rss.xml" />
+    
+    
+    
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+	    	
+	    <li class="nav-Home" role="presentation"><a href="/">Home</a></li>
+			
+	    <li class="nav-About" role="presentation"><a href="/about">About</a></li>
+			
+	    <li class="nav-Oracle" role="presentation"><a href="/tag/Oracle">Oracle</a></li>
+		
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+<!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+	
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+				
+	
+
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">原生线程</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Yan</a> -->
+            <time class="post-date" datetime="2017-12-03">03 Dec 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h2>概述</h2>
+
+<p>线程是让单个进程并发执行多个任务的机制。它是共享同一个父进程的内存和资源的轻量级进程，一个进程可以包括多个并行执行的线程。作为同一个进程的一部分，线程之间可以批次通信并共享数据。Android支持java和原生代码中的线程。</p>
+
+<h2>pthread_create</h2>
+
+<p>Android创建线程支持两种方式，一种是我们都很熟悉的java线程，可以直接在java线程中直接执行原生代码。</p>
+
+<p>另外一种就是原生线程POSIX线程。</p>
+
+<p>POSIX线程也被简称为Pthreads，是一个线程的POSIX标准。</p>
+
+<p>头文件：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;pthread.h&gt;</span>
+</code></pre></div>
+<p>创建线程</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">pthread_create</span><span class="p">(</span><span class="kt">pthread_t</span><span class="o">*</span> <span class="kr">thread</span><span class="p">,</span>
+<span class="kt">pthread_attr_t</span> <span class="k">const</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+<span class="kt">void</span><span class="o">*</span> <span class="p">(</span><span class="o">*</span><span class="n">start_routine</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">),</span> 
+<span class="kt">void</span><span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+</code></pre></div>
+<p>函数参数说明如下：</p>
+
+<ul>
+<li>指向pthread_t 类型变量的指针，函数用该指针返回新线程的句柄。</li>
+<li>指向pthread<em>attr</em>t 结构的指针形式存在的新线程属性，可以通过该属性指定新线程的栈基址、栈大小、守护大小、调度策略和调度优先级等。</li>
+<li>指向线程启动程序的函数指针，启动线程函数签名格式如下：
+void* start_tountine (void* args)，启动程序将线程参数看成是void指针，返回void指针类型结果。</li>
+</ul>
+
+<p>当线程以空指针的形式执行时，参数都需要被传递给启动程序，如果不需要传递参数，它可以为NULL。</p>
+
+<p>成功时，pthread_create函数返回0，否则返回一个错误代码。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">pthread_t</span> <span class="kr">thread</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;native thread&quot;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="kr">thread</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">nativeThread</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">message</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">result</span><span class="p">){</span>
+    <span class="c1">//获取异常类</span>
+   <span class="n">jclass</span> <span class="n">exceptionClazz</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">FindClass</span><span class="p">(</span><span class="s">&quot;java/lang/RuntimeException&quot;</span><span class="p">);</span>
+    <span class="c1">//抛出异常</span>
+    <span class="n">env</span><span class="o">-&gt;</span><span class="n">ThrowNew</span><span class="p">(</span><span class="n">exceptionClazz</span><span class="p">,</span> <span class="s">&quot;无法创建线程&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span><span class="o">*</span> <span class="nf">printInfo</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">args</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">args</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">pthread_t</span> <span class="kr">thread</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;native thread&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="kr">thread</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">printInfo</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">message</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">result</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR -- pthread_create return code: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>pthread_join</h2>
+
+<p>通过pthread_join函数可以使一个函数等待线程终止。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">pthread_join</span><span class="p">(</span><span class="kt">pthread_t</span> <span class="kr">thread</span><span class="p">,</span><span class="kt">void</span><span class="o">**</span> <span class="n">ret_val</span><span class="p">);</span>
+</code></pre></div>
+<p>函数参数说明如下：</p>
+
+<ul>
+<li>线程句柄，它是pthread_create函数返回的目标线程。</li>
+<li>指向空指针的指针，该指针是为了从启动程序中获得返回值。</li>
+</ul>
+
+<p>执行pthread<em>join，将挂起调用线程的执行，直到目标线程终止。如果ret</em>val不是NULL，该函数将ret<em>val指针的值设置为启动程序的返回结果。如果成功，pthread</em>join函数返回值是0，否则它将返回错误代码。</p>
+
+<p>示例代码：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">//使用pthread_create所创建的目标线程thread</span>
+<span class="kt">void</span><span class="o">*</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">pthread_join</span><span class="p">(</span><span class="kr">thread</span><span class="p">,</span><span class="o">&amp;</span><span class="n">value</span><span class="p">)){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ERROR -- unable to join thread. </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;join thread returned %d. </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>附到Java虚拟机</h2>
+
+<p>创建的线程需要依附到java虚拟机上，通过JNI_OnLoad()可以得到指向java虚拟机的指针JavaVM* ，通过JavaVM* 的AttachCurrentThread()函数依附到java虚拟机上。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">//Java虚拟机接口指针</span>
+<span class="k">static</span> <span class="n">JavaVM</span><span class="o">*</span> <span class="n">gVm</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 使用JNI_OnLoad方法可以获取Java虚拟机接口指针。</span>
+<span class="cm"> * 当共享库开始加载时虚拟机会自动调用该方法。</span>
+<span class="cm"> * @param vm</span>
+<span class="cm"> * @param reserved</span>
+<span class="cm"> * @return</span>
+<span class="cm"> */</span>
+<span class="n">jint</span> <span class="nf">JNI_OnLoad</span><span class="p">(</span><span class="n">JavaVM</span><span class="o">*</span> <span class="n">vm</span><span class="p">,</span><span class="kt">void</span><span class="o">*</span> <span class="n">reserved</span><span class="p">){</span>
+    <span class="c1">//缓存Java虚拟机接口指针</span>
+    <span class="n">gVm</span> <span class="o">=</span> <span class="n">vm</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">JNI_VERSION_1_4</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span><span class="o">*</span> <span class="nf">nativeThread</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">args</span><span class="p">){</span>
+    <span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="c1">//将当前线程附加到Java虚拟机上</span>
+    <span class="c1">//并且获取JNIEnv接口指针</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">gVm</span><span class="o">-&gt;</span><span class="n">AttachCurrentThread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">env</span><span class="p">,</span><span class="nb">NULL</span><span class="p">)){</span>
+        <span class="p">...</span>
+
+        <span class="c1">//从Java虚拟机中分离当前线程</span>
+        <span class="n">gVm</span><span class="o">-&gt;</span><span class="n">DetachCurrentThread</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>Android例子</h2>
+
+<p>本例子实现三个native方法，分别是创建POSIX线程方法、初始化方法和释放内存方法。声明如下：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//在Activity的onCreate()方法调用，主要用于native全局变量初始化之类的。</span>
+<span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeInit</span><span class="o">();</span>
+
+<span class="c1">//在Activity按钮点击调用，主要用于创建native线程。</span>
+<span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">posixThread</span><span class="o">();</span>
+
+<span class="c1">//在Activity的onDestroy()方法调用，主要用于native释放内存</span>
+<span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeFree</span><span class="o">();</span>
+</code></pre></div>
+<p>native回调方法，在Activity中声明如下方法：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNativeResult</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">log</span><span class="o">){</span>
+    <span class="c1">//native创建线程成功后会回调此方法</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>native方法实现：</p>
+
+<p><strong>nativeInit()方法代码实现：</strong></p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">jobject</span> <span class="n">gObj</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="c1">//缓存回调方法的methodID</span>
+<span class="k">static</span> <span class="n">jmethodID</span> <span class="n">gOnNativeResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">JNIEXPORT</span> <span class="kt">void</span> <span class="n">JNICALL</span>
+<span class="nf">Java_pub_yanng_jnithread_MainActivity_nativeInit</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">instance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//如果全局对象为空，则初始化</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">gObj</span><span class="p">){</span>
+        <span class="c1">//为对象创建一个新的全局引用</span>
+        <span class="n">gObj</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">NewGlobalRef</span><span class="p">(</span><span class="n">instance</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">gObj</span><span class="p">){</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//回调方法methodId初始化</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">gOnNativeResult</span><span class="p">){</span>
+        <span class="c1">//反射</span>
+        <span class="n">jclass</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetObjectClass</span><span class="p">(</span><span class="n">instance</span><span class="p">);</span>
+        <span class="n">gOnNativeResult</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetMethodID</span><span class="p">(</span><span class="n">clazz</span><span class="p">,</span><span class="s">&quot;onNativeResult&quot;</span><span class="p">,</span><span class="s">&quot;(Ljava/lang/String;)V&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">gOnNativeResult</span><span class="p">){</span>
+            <span class="c1">//没有声明回调方法</span>
+            <span class="n">jclass</span> <span class="n">exceptionClazz</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">FindClass</span><span class="p">(</span><span class="s">&quot;java/lang/RuntimeException&quot;</span><span class="p">);</span>
+            <span class="c1">//抛出异常</span>
+            <span class="n">env</span><span class="o">-&gt;</span><span class="n">ThrowNew</span><span class="p">(</span><span class="n">exceptionClazz</span><span class="p">,</span><span class="s">&quot;没有声明onNativeResult()方法&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>nativeFree()方法代码实现：</strong></p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">JNIEXPORT</span> <span class="kt">void</span> <span class="n">JNICALL</span>
+<span class="nf">Java_pub_yanng_jnithread_MainActivity_nativeFree</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">instance</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">gObj</span><span class="p">){</span>
+        <span class="c1">//删除引用</span>
+        <span class="n">env</span><span class="o">-&gt;</span><span class="n">DeleteGlobalRef</span><span class="p">(</span><span class="n">gObj</span><span class="p">);</span>
+        <span class="n">gObj</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>posixThread()方法代码实现：</strong></p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span><span class="o">*</span> <span class="nf">nativeThread</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">args</span><span class="p">){</span>
+    <span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">gVm</span><span class="o">-&gt;</span><span class="n">AttachCurrentThread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">env</span><span class="p">,</span><span class="nb">NULL</span><span class="p">)){</span>
+        <span class="kt">char</span><span class="o">*</span> <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">args</span><span class="p">;</span>
+        <span class="n">LOGI</span><span class="p">(</span><span class="s">&quot;native %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">message</span><span class="p">);</span>
+        <span class="n">jstring</span> <span class="n">messageString</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">NewStringUTF</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+        <span class="n">env</span><span class="o">-&gt;</span><span class="n">CallVoidMethod</span><span class="p">(</span><span class="n">gObj</span><span class="p">,</span><span class="n">gOnNativeResult</span><span class="p">,</span><span class="n">messageString</span><span class="p">);</span>
+        <span class="n">gVm</span><span class="o">-&gt;</span><span class="n">DetachCurrentThread</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">JNIEXPORT</span> <span class="kt">void</span> <span class="n">JNICALL</span>
+<span class="nf">Java_pub_yanng_jnithread_MainActivity_posixThread</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">instance</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kt">pthread_t</span> <span class="kr">thread</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;native thread&quot;</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="kr">thread</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">nativeThread</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">message</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">result</span><span class="p">){</span>
+        <span class="c1">//获取异常类</span>
+        <span class="n">jclass</span> <span class="n">exceptionClazz</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">FindClass</span><span class="p">(</span><span class="s">&quot;java/lang/RuntimeException&quot;</span><span class="p">);</span>
+        <span class="c1">//抛出异常</span>
+        <span class="n">env</span><span class="o">-&gt;</span><span class="n">ThrowNew</span><span class="p">(</span><span class="n">exceptionClazz</span><span class="p">,</span> <span class="s">&quot;无法创建线程&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//pthread_join()示例代码</span>
+    <span class="kt">void</span><span class="o">*</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">pthread_join</span><span class="p">(</span><span class="kr">thread</span><span class="p">,</span><span class="o">&amp;</span><span class="n">value</span><span class="p">)){</span>
+        <span class="c1">//获取异常</span>
+        <span class="n">jclass</span> <span class="n">exceptionClazz</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">FindClass</span><span class="p">(</span><span class="s">&quot;java/lang/RuntimeException&quot;</span><span class="p">);</span>
+        <span class="c1">//抛出异常</span>
+        <span class="n">env</span><span class="o">-&gt;</span><span class="n">ThrowNew</span><span class="p">(</span><span class="n">exceptionClazz</span><span class="p">,</span><span class="s">&quot;unable to join thread&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>注意在ndk忘了多少版本后，使用pthread_create会报too many arguments,expect 1。原因是大概是_Nonnull找不到宏定义，这个刚开始被坑了很久，最后在stackoverflow找到解决方案。</p>
+
+<p>解决方案：</p>
+
+<p>在c文件的最前，加入以下声明：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#ifndef _Nonnull</span>
+<span class="cp">#define _Nonnull</span>
+<span class="cp">#endif</span>
+</code></pre></div>
+<p>app的build.gradle添加如下代码：</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">android</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">defaultConfig</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">externalNativeBuild</span> <span class="o">{</span>
+            <span class="n">ndkBuild</span><span class="o">{</span>
+                <span class="n">arguments</span> <span class="s2">&quot;APP_DEPRECATED_HEADERS=true&quot;</span>
+            <span class="o">}</span>
+            <span class="n">cmake</span> <span class="o">{</span>
+                <span class="n">cppFlags</span> <span class="s2">&quot;&quot;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>再Sync Now 后就不报错啦~</p>
+
+<p>运行结果：</p>
+
+<p>当上面注释掉pthread_join的示例代码，运行结果如下：</p>
+
+<p><img src="../assets/blog/2017120501.png" alt=""></p>
+
+<p>可以看到日志输出是先输出主线程的Log，再输出native线程的日志，最后是native线程回调方法的日志输出。</p>
+
+<p>再把pthread_join的示例代码打开，再一次运行，运行结果如下：</p>
+
+<p><img src="../assets/blog/2017120502.png" alt=""></p>
+
+<p>此时，先输出的是native方法的日志，然后是native线程回调方法的日志输出，最后才是主线程的日志输出。</p>
+
+<p>完整代码：</p>
+
+<p><a href="https://github.com/mia2002/JniThread">https://github.com/mia2002/JniThread</a></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/about" style="background-image: url(/assets/images/head.jpg)"><span class="hidden">yanyan's Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/about">yanyan</a></h4>
+                
+                
+                    <p> 一只正在学飞的小菜鸟</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广州，广东</span> 
+                    <span class="author-link icon-link"><a href="https://github.com/mia2002"> https://github.com/mia2002</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+            
+            <!-- Add Comments -->
+            
+            
+            
+                
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = 'http://mia2002.cn/blog/jni-thread'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/jni-thread'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//mia2002.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<!-- disqus -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+    
+    
+    
+    	
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+			
+		
+		
+    <!-- [[! prev_post ]] -->
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/mac-open-adt">
+        <section class="post">
+            <h2>Mac打开ADT Bundle</h2>
+            <p>macos下打开ADT Bundle需要本机已安装Java SE 6，如下图所示，本文档只作一个过程记录，方便自己查看。
+
+
+
+这是由于自从mac os升级到10.8之后，就把系统自带的1.6版本的jdk删掉，因此我们想在mac下打开ADT Bundle只能先安装jdk1.6。注意如果系统已经...</p>
+        </section>
+    </a>
+    <!-- [[! /prev_post ]] -->
+    
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Welcome to Yan's Blog</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/Poi-Son/Pasper">Pasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+</body>
+</html>
