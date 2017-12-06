@@ -18,7 +18,7 @@
         <managingEditor><![CDATA[Yan]]></managingEditor>
         
 <item>
-    <title><![CDATA[原生线程]]></title>
+    <title><![CDATA[POSIX线程]]></title>
     <link>http://mia2002.cn/blog/jni-thread</link>
     <author><![CDATA[Yan]]></author>
     <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
