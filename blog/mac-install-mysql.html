@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>System.getProperty()</title>
+    <title>mac安装MySQL</title>
     <meta name="description" content="Welcome to Yan's Blog - What wakes you up every morning is not the bell,but your dream!!" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -83,12 +83,17 @@
 			
 		
 			
-				
-				
+		
+			
+		
+			
+		
+			
+		
 	
 
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+<header class="main-header post-head no-cover">
     <nav class="main-nav  clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
         <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
@@ -100,16 +105,16 @@
     <article class="post tag-fiction">
 
         <header class="post-header">
-            <h1 class="post-title">System.getProperty()</h1>
+            <h1 class="post-title">mac安装MySQL</h1>
             <section class="post-meta">
             <!-- <a href='/'>Yan</a> -->
-            <time class="post-date" datetime="2017-07-20">20 Jul 2017</time>
+            <time class="post-date" datetime="2017-11-30">30 Nov 2017</time>
                 <!-- [[tags prefix=" on "]] -->
                  
                 on 
                 
                     
-                       <a href='/tag/Java'>Java</a>
+                       <a href='/tag/web'>web</a>
                        
                 
                 
@@ -118,140 +123,30 @@
 
         <section class="post-content">
             
-            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。</p>
+            <h2>官网下载MySQL</h2>
 
-<table><thead>
-<tr>
-<th>参数名</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>java.version</td>
-<td>Java的运行时环境版本</td>
-</tr>
-<tr>
-<td>java.vendor</td>
-<td>Java 运行时环境供应商</td>
-</tr>
-<tr>
-<td>java.vendor.url</td>
-<td>Java 供应商的 URL</td>
-</tr>
-<tr>
-<td>java.home</td>
-<td>Java 安装目录</td>
-</tr>
-<tr>
-<td>java.vm.specification.version</td>
-<td>Java 虚拟机规范版本</td>
-</tr>
-<tr>
-<td>java.vm.specification.vendor</td>
-<td>Java 虚拟机规范供应商</td>
-</tr>
-<tr>
-<td>java.vm.specification.name</td>
-<td>Java 虚拟机规范名称</td>
-</tr>
-<tr>
-<td>java.vm.version</td>
-<td>Java 虚拟机实现版本</td>
-</tr>
-<tr>
-<td>java.vm.vendor</td>
-<td>Java 虚拟机实现供应商</td>
-</tr>
-<tr>
-<td>java.vm.name</td>
-<td>Java 虚拟机实现名称</td>
-</tr>
-<tr>
-<td>java.specification.version</td>
-<td>Java 运行时环境规范版本</td>
-</tr>
-<tr>
-<td>java.specification.vendor</td>
-<td>Java 运行时环境规范供应商</td>
-</tr>
-<tr>
-<td>java.specification.name</td>
-<td>Java 运行时环境规范名称</td>
-</tr>
-<tr>
-<td>java.class.version</td>
-<td>Java 类格式版本号</td>
-</tr>
-<tr>
-<td>java.class.path</td>
-<td>Java 类路径</td>
-</tr>
-<tr>
-<td>java.library.path</td>
-<td>加载库时搜索的路径列表</td>
-</tr>
-<tr>
-<td>java.io.tmpdir</td>
-<td>默认的临时文件路径</td>
-</tr>
-<tr>
-<td>java.compiler</td>
-<td>要使用的 JIT 编译器的名称</td>
-</tr>
-<tr>
-<td>java.ext.dirs</td>
-<td>一个或多个扩展目录的路径</td>
-</tr>
-<tr>
-<td>os.name</td>
-<td>操作系统的名称</td>
-</tr>
-<tr>
-<td>os.arch</td>
-<td>操作系统的架构</td>
-</tr>
-<tr>
-<td>os.version</td>
-<td>操作系统的版本</td>
-</tr>
-<tr>
-<td>file.separator</td>
-<td>文件分隔符（在 UNIX 系统中是“/”）</td>
-</tr>
-<tr>
-<td>path.separator</td>
-<td>路径分隔符（在 UNIX 系统中是“:”）</td>
-</tr>
-<tr>
-<td>line.separator</td>
-<td>行分隔符（在 UNIX 系统中是“/n”）</td>
-</tr>
-<tr>
-<td>user.name</td>
-<td>用户的账户名称</td>
-</tr>
-<tr>
-<td>user.home</td>
-<td>用户的主目录</td>
-</tr>
-<tr>
-<td>user.dir</td>
-<td>用户的当前工作目录</td>
-</tr>
-</tbody></table>
+<p>下载连接：<a href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
 
-<p>示例代码：</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;java.vendor.url&quot;</span><span class="o">);</span> <span class="c1">//java官方网站  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;java.vm.nam&quot;</span><span class="o">);</span> <span class="c1">//java虚拟机名称  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;user.country&quot;</span><span class="o">);</span> <span class="c1">//国家或地区  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;user.dir&quot;</span><span class="o">);</span> <span class="c1">//工程的路径  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;java.runtime.version&quot;</span><span class="o">);</span><span class="c1">//java运行环境版本  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;os.arch&quot;</span><span class="o">);</span> <span class="c1">//操作系统位数（32或64）  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;os.name&quot;</span><span class="o">);</span> <span class="c1">//操作系统名称  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;sun.jnu.encoding&quot;</span><span class="o">);</span> <span class="c1">//编码格式  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;os.version&quot;</span><span class="o">);</span> <span class="c1">//操纵系统版本  </span>
-<span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;java.version&quot;</span><span class="o">);</span> <span class="c1">//java版本版本</span>
-</code></pre></div>
+<p><img src="../assets/blog/2017113001.png" alt=""></p>
+
+<h2>安装MySQL</h2>
+
+<p>下载完毕后直接双击安装即可。</p>
+
+<h2>查看安装结果</h2>
+
+<p>在系统偏好设置中可以查看MySQL是否已被安装上。</p>
+
+<p><img src="../assets/blog/2017113002.png" alt=""></p>
+
+<h2>配置环境变量</h2>
+
+<p>初次安装MySQL，在终端输入命令，<code>mysql</code>会提示命令找不到，需要配置一下环境变量。</p>
+
+<p>可以先查看/usr/local是否有mysql这个文件目录。</p>
+
+<p><img src="../assets/blog/2017113003.png" alt=""></p>
+
 
         </section>
 
@@ -289,8 +184,8 @@
 <div id="disqus_thread"></div>
 <script>
 	var disqus_config = function () {
-		this.page.url = 'http://mia2002.cn/blog/System-getProperty'; // Replace PAGE_URL with your page's canonical URL variable
-		this.page.identifier = '/blog/System-getProperty'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+		this.page.url = 'http://mia2002.cn/blog/mac-install-mysql'; // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = '/blog/mac-install-mysql'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 	};
 
 	(function() { // DON'T EDIT BELOW THIS LINE
@@ -332,14 +227,16 @@
 		
 
     <!-- [[! next_post ]] -->
-    <a class="read-next-story " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/if-else">
+    <a class="read-next-story " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/jni-thread">
         <section class="post">
-            <h2>如何解决if else多层嵌套</h2>
-            <p>## 前言
+            <h2>POSIX线程</h2>
+            <p>## 概述
 
-在进入正题前请允许我啰嗦几句，其实这篇文章我在上一年就想写了，但是拖延症发作，一直拖到今天。
+线程是让单个进程并发执行多个任务的机制。它是共享同一个父进程的内存和资源的轻量级进程，一个进程可以包括多个并行执行的线程。作为同一个进程的一部分，线程之间可以批次通信并共享数据。Android支持java和原生代码中的线程。
 
-if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的，我的大学java老师在讲if else语句的时候和我们说过if else嵌套应尽量保持不超过3层，这句话，我一直记住了...</p>
+## pthread_create
+
+Android...</p>
         </section>
     </a>
         
@@ -365,16 +262,14 @@ if...else我们都很熟悉，并且应该也是写逻辑代码用得最多的�
 		
 		
     <!-- [[! prev_post ]] -->
-    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/DecorView">
+    <a class="read-next-story prev " style="background-image: url(/assets/images/cover2.jpg)" href="/blog/mac-open-adt">
         <section class="post">
-            <h2>DecorView</h2>
-            <p>
-DecorView为整个Window界面的最顶层View
-DecorView只有一个子元素为LinearLayout，代表整个Window界面，包含通知栏，标题栏，内容显示栏三块区域。
-LinearLayout里有两个FrameLayout子元素。
+            <h2>Mac打开ADT Bundle</h2>
+            <p>macos下打开ADT Bundle需要本机已安装Java SE 6，如下图所示，本文档只作一个过程记录，方便自己查看。
 
 
-第3点提到的两个FrameLayout...</p>
+
+这是由于自从mac os升级到10.8之后，就把系统自带的1.6版本的jdk删掉，因此我们想在mac下打开ADT Bundle只能先安装jdk1.6。注意如果系统已经...</p>
         </section>
     </a>
     <!-- [[! /prev_post ]] -->

@@ -76,17 +76,17 @@
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
 <!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/assets/images/cover1.jpg) ">
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
 	    <a class="blog-logo" href="/"><img src="/assets/images/logo.png" alt="Blog Logo" /></a>
 	    <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Java</h1>
+            <h1 class="page-title"></h1>
             <h2 class="page-description">
             
-                Java
+			    A 1-post collection
             
             </h2>
         </div>
@@ -112,35 +112,30 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/blog/System-getProperty">System.getProperty()</a></h2>
+            <h2 class="post-title"><a href="/blog/mac-install-mysql">mac安装MySQL</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>使用Java提供的System.getProperty()方法可以获取JVM以及操作系统的一些参数。
+            <p>官网下载MySQL
+
+下载连接：https://dev.mysql.com/downloads/mysql/
 
 
 
-参数名
-描述
+安装MySQL
+
+下载完毕后直接双击安装即可。
+
+查看安装结果
+
+在系统偏好设置中可以查看MySQL是否已被安装上。
 
 
 
-java.version
-Java的运行时环境版本
+配置环境变量
 
+初次安装MySQL，在终端输入命令，mysql会提示命令找不到，需要配置一下环境变量。
 
-java.vendor
-Java 运行时环境供应商
-
-
-java.vendor.url
-Java 供应商的 URL
-
-
-java.home
-Java 安装目录
-
-
-java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">&raquo;</a></p>
+可以先查看/usr/local是否有mysql这... <a class="read-more" href="/blog/mac-install-mysql">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
@@ -151,53 +146,11 @@ java.vm.specification.v... <a class="read-more" href="/blog/System-getProperty">
                 on 
                 
                     
-                       <a href='/tag/Java'>Java</a>
+                       <a href='/tag/web'>web</a>
                        
                 
             
-            <time class="post-date" datetime="2017-07-20">20 Jul 2017</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/blog/how-to-install-jdk">How to install JDK</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Ubuntu
-
-1.官网下载JDK
-
-地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-
-
-
-这里我下载的是jdk8，注意勾选上Accept License Agreement。
-
-2.解压缩
-
-
-
-3.拷贝JDK
-
-把文件拷贝到~/opt文件夹下。
-
-先进去这个路径中... <a class="read-more" href="/blog/how-to-install-jdk">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/head.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/about'>Yan</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Java'>Java</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-12-05">05 Dec 2016</time>
+            <time class="post-date" datetime="2017-11-30">30 Nov 2017</time>
         </footer>
     </article>
     

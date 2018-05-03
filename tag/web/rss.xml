@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <channel>
+        <atom:link href="rss" rel="self" type="application/rss+xml" />
+        
+        <title><![CDATA[Welcome to Yan's Blog - web]]></title>
+        <link>http://mia2002.cn/tag/web</link>
+<!--        需要修复-->
+        <description><![CDATA[]]></description>
+        
+        
+        <language>en-uk</language>
+        <managingEditor><![CDATA[Yan]]></managingEditor>
+        
+<item>
+    <title><![CDATA[mac安装MySQL]]></title>
+    <link>http://mia2002.cn/blog/mac-install-mysql</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-11-30T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/mac-install-mysql]]></guid>
+    <description><![CDATA[官网下载MySQL
+
+下载连接：https://dev.mysql.com/downloads/mysql/
+
+
+
+安装MySQL
+
+下载完毕后直接双击安装即可。
+
+查看安装结果
+
+在系统偏好设置中可以查看MySQL是否已被安装上。
+
+
+
+配置环境变量
+
+初次安装MySQL，在终端输入命令，mysql会提示命令找不到，需要配置一下环境变量。
+
+可以先查看/usr/local是否有mysql这...]]></description>
+</item>
+
+
+    </channel>
+</rss>

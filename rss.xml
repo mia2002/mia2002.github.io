@@ -35,6 +35,36 @@ Android创建线程支持两种方式，一种是我们都很熟悉的java线程
 </item>
 
 <item>
+    <title><![CDATA[mac安装MySQL]]></title>
+    <link>http://mia2002.cn/blog/mac-install-mysql</link>
+    <author><![CDATA[Yan]]></author>
+    <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
+    <dc:date>2017-11-30T00:00:00+00:00</dc:date>
+    <guid><![CDATA[/blog/mac-install-mysql]]></guid>
+    <description><![CDATA[官网下载MySQL
+
+下载连接：https://dev.mysql.com/downloads/mysql/
+
+
+
+安装MySQL
+
+下载完毕后直接双击安装即可。
+
+查看安装结果
+
+在系统偏好设置中可以查看MySQL是否已被安装上。
+
+
+
+配置环境变量
+
+初次安装MySQL，在终端输入命令，mysql会提示命令找不到，需要配置一下环境变量。
+
+可以先查看/usr/local是否有mysql这...]]></description>
+</item>
+
+<item>
     <title><![CDATA[Mac打开ADT Bundle]]></title>
     <link>http://mia2002.cn/blog/mac-open-adt</link>
     <author><![CDATA[Yan]]></author>
