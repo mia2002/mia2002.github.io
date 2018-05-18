@@ -131,13 +131,18 @@
 
 <h2>安装MySQL</h2>
 
-<p>下载完毕后直接双击安装即可。</p>
+<p>下载完毕后直接双击安装即可。安装最后记得截图保存初始密码。
+<img src="../assets/blog/2018050603.png" alt=""></p>
 
 <h2>查看安装结果</h2>
 
 <p>在系统偏好设置中可以查看MySQL是否已被安装上。</p>
 
 <p><img src="../assets/blog/2017113002.png" alt=""></p>
+
+<p>双击，打开MySQL Server。</p>
+
+<p><img src="../assets/blog/2018050602.png" alt=""></p>
 
 <h2>配置环境变量</h2>
 
@@ -147,6 +152,45 @@
 
 <p><img src="../assets/blog/2017113003.png" alt=""></p>
 
+<p>执行命令nano或者vim修改<code>bash_profile</code>文件添加mysql bin文件的路径。</p>
+
+<p><img src="../assets/blog/2018050601.png" alt=""></p>
+
+<p>保存，执行命令<code>source ~/.bash_profile</code>。</p>
+
+<h2>修改初始密码</h2>
+
+<p>执行命令<code>mysqladmin -u root -p password yournewpass</code>
+输出刚刚截图保存的初始化密码，即可完成密码修改，<code>yournewpass</code>就是修改后的密码。</p>
+
+<p><img src="../assets/blog/2018050604.png" alt=""></p>
+
+<h2>登录MySQL</h2>
+
+<p>执行命令<code>mysql -u root -p</code>，输入修改后的密码，即可登录。
+注意另起一个窗口。</p>
+
+<p><img src="../assets/blog/2018050605.png" alt=""></p>
+
+<h2>使用命令创建表</h2>
+
+<p>登录MySQL后即可使用命令创建数据库，数据表，插入数据等增删改查操作。</p>
+
+<p><strong>创建数据库</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">create database [name]
+</code></pre></div>
+<p><strong>使用数据库</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">use [name]
+</code></pre></div>
+<p><strong>创建数据表</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">create table tbl_test(
+id int not null,
+name varchar(64) not null
+);
+</code></pre></div>
+<p><strong>插入数据</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">insert into tbl_test(id,name) values(1,&#39;yanyan&#39;);
+</code></pre></div>
 
         </section>
 
